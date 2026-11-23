@@ -28,7 +28,7 @@ html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
 button { font: inherit; color: inherit; touch-action: manipulation; cursor: pointer; }
 
 #app {
-  height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; grid-template-columns: 1fr;
+  height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; grid-template-columns: minmax(0, 1fr);
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
@@ -53,6 +53,7 @@ body.riding #rideBtn { background: #ff6b4a; color: #2b0a02; }
 #overlay { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(8,10,16,0.45);
   backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
 #overlay.hidden { display: none; }
+.card .row { flex-wrap: wrap; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
   max-width: min(420px, 90%); text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.45); }
 .card h2 { margin: 0 0 6px; font-size: 22px; }
@@ -71,12 +72,12 @@ body.riding #rideBtn { background: #ff6b4a; color: #2b0a02; }
 body.riding #editor { opacity: 0.45; pointer-events: none; }
 .strip-wrap { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
 #strip { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
-.chip { flex: 0 0 auto; display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; column-gap: 6px;
+.chip { flex: 0 0 auto; display: grid; grid-template-columns: auto auto auto; grid-template-rows: auto auto; column-gap: 6px;
   align-items: center; text-align: left; background: var(--panel2); border: 2px solid transparent; border-radius: 10px; padding: 6px 10px; }
 .chip .num { grid-row: 1 / 3; font-size: 11px; color: var(--muted); }
-.chip .ic { display: none; }
+.chip .ic { grid-row: 1 / 3; color: #6b4a2e; display: flex; }
 .chip .nm { font-weight: 700; font-size: 13px; }
-.chip .sub { font-size: 11px; color: var(--muted); grid-column: 2; }
+.chip .sub { font-size: 11px; color: var(--muted); grid-column: 3; }
 .chip.sel { border-color: var(--sel); }
 .chip.bad { border-color: var(--bad); background: #3a1d22; }
 #addRow { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -116,13 +117,52 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   #strip { flex-wrap: wrap; overflow: visible; }
 }
 
+/* level navigation */
+.lvlnav { position: relative; display: flex; align-items: center; gap: 4px; }
+.navbtn { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; width: 32px; height: 34px; padding: 0; font-size: 20px; line-height: 1; }
+.navbtn:disabled { opacity: 0.35; }
+.navbtn.locked { opacity: 0.5; }
+#lvlName { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; height: 34px; padding: 0 12px; font-weight: 700; white-space: nowrap; }
+.lvnum { display: inline-grid; place-items: center; min-width: 20px; height: 20px; border-radius: 6px; background: #b678ff; color: #1b0838; font-size: 12px; font-weight: 800; margin-right: 4px; }
+.stars { color: var(--sel); letter-spacing: 1px; font-size: 13px; margin-left: 4px; }
+#lvlMenu { position: absolute; top: 40px; left: 36px; z-index: 20; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 6px; min-width: 240px; box-shadow: 0 16px 40px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 2px; }
+#lvlMenu.hidden { display: none; }
+.lvitem { display: flex; align-items: center; gap: 8px; background: transparent; border: 0; border-radius: 8px; padding: 8px 10px; text-align: left; }
+.lvitem:hover:not(:disabled), .lvitem.cur { background: var(--panel2); }
+.lvitem:disabled { opacity: 0.45; cursor: default; }
+.lvitem .lvn { flex: 1; font-weight: 600; }
+.hidden { display: none !important; }
+@media (max-width: 720px) {
+  .brand { display: none; }
+  #topbar { flex-wrap: wrap; row-gap: 6px; }
+  .lvlnav { flex: 1 1 100%; }
+  #lvlName { flex: 1; padding: 0 8px; font-size: 14px; text-align: left; }
+  #lvlMenu { left: 0; right: 0; }
+}
+
+/* piece icons */
+.pico { width: 34px; height: 24px; display: block; }
+.chip .ic { background: #e9d9c4; border-radius: 7px; padding: 2px 3px; }
+.chip.sel .ic { background: #ffe7a3; }
+#addRow button { display: flex; align-items: center; gap: 6px; color: #e2c9a6; }
+#addRow button span { color: #cdd7e8; }
+#addRow .pico { width: 30px; height: 21px; }
+.hic { display: inline-flex; vertical-align: middle; margin-right: 6px; color: #e2c9a6; }
+.hic .pico { width: 30px; height: 21px; }
+
 </style>
 </head>
 <body>
   <div id="app">
     <header id="topbar">
       <div class="brand"><span class="logo">◉</span> Portal Drop</div>
-      <div id="hint">Design your run, drag the portal anywhere, then hit Ride.</div>
+      <div class="lvlnav">
+        <button id="prevLvl" class="navbtn" aria-label="Previous level">‹</button>
+        <button id="lvlName"></button>
+        <button id="nextLvl" class="navbtn" aria-label="Next level">›</button>
+        <div id="lvlMenu" class="hidden"></div>
+      </div>
+      <div id="hint"></div>
       <div class="spacer"></div>
       <span id="pieceCount" class="pill"></span>
       <button id="clearBtn" class="ghost">Clear</button>
@@ -138,6 +178,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
           <div class="row">
             <button id="ovEdit" class="ghost">✎ Edit run</button>
             <button id="ovRetry" class="primary">↻ Ride again</button>
+            <button id="ovNext" class="primary hidden">Next level →</button>
           </div>
         </div>
       </div>
@@ -159,26 +200,86 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 
   <script>
 // Level definitions. World is 1600 x 900 units, y grows downward.
-// ground:   fixed dirt surfaces (polylines, listed left -> right)
-// hazards:  rectangles that crash the rider on contact (type: 'spikes' | 'wall')
-// noBuild:  rectangles your track may not pass through (forces jumps)
-// portal:   the finish line. ground:true = must be rolling on the ground (no flying in)
-//
-// For now the game ships with one open sandbox. The engine already supports
-// hazards / no-build zones, so challenge levels can be added to this list later.
+// ground:    fixed dirt surfaces (polylines, listed left -> right)
+// hazards:   rectangles that crash the rider on contact (type: 'spikes' | 'wall')
+// noBuild:   rectangles your track may not pass through (forces jumps)
+// portal:    the finish line. ground:true = must be rolling on the ground (no flying in)
+// par:       piece count for 3 stars
+// draggable: portal can be moved by the player (Free Ride)
 (function (G) {
   const MTB = (G.MTB = G.MTB || {});
   MTB.WORLD = { W: 1600, H: 900 };
 
+  const START = [{ type: 'ramp', angle: 30, length: 220 }];
+
   MTB.LEVELS = [
     {
+      id: 'drop-in',
+      name: 'Drop In',
+      hint: 'Shape a smooth run down to the portal on the valley floor. Roll in on your wheels.',
+      portal: { x: 1350, y: 775, r: 60, ground: true },
+      ground: [[[0, 830], [1600, 830]]],
+      hazards: [],
+      noBuild: [],
+      par: 2,
+      start: START,
+    },
+    {
+      id: 'sky-portal',
+      name: 'Sky Portal',
+      hint: 'This portal floats in mid-air. Finish with an up-curve to launch into it.',
+      portal: { x: 1250, y: 380, r: 50 },
+      ground: [[[0, 870], [1600, 870]]],
+      hazards: [],
+      noBuild: [{ x: 1000, y: 0, w: 600, h: 900 }],
+      par: 2,
+      start: START,
+    },
+    {
+      id: 'mind-the-gap',
+      name: 'Mind the Gap',
+      hint: 'Build a kicker, clear the spike canyon and land on the far slope.',
+      portal: { x: 1450, y: 650, r: 60, ground: true },
+      ground: [[[1000, 560], [1250, 690], [1600, 700]]],
+      hazards: [{ type: 'spikes', x: 640, y: 860, w: 360, h: 40 }],
+      noBuild: [{ x: 640, y: 0, w: 360, h: 900 }],
+      par: 2,
+      start: START,
+    },
+    {
+      id: 'thread-the-needle',
+      name: 'Thread the Needle',
+      hint: 'Fly through the window in the cliff to reach the portal beyond.',
+      portal: { x: 1380, y: 470, r: 45 },
+      ground: [[[0, 880], [1600, 880]]],
+      hazards: [
+        { type: 'wall', x: 1000, y: 0, w: 44, h: 390 },
+        { type: 'wall', x: 1000, y: 540, w: 44, h: 340 },
+      ],
+      noBuild: [{ x: 960, y: 0, w: 640, h: 900 }],
+      par: 2,
+      start: START,
+    },
+    {
+      id: 'over-the-wall',
+      name: 'Over the Wall',
+      hint: 'Clear the rock wall, then add a Gap piece to place your own landing ramp.',
+      portal: { x: 1400, y: 780, r: 50, ground: true },
+      ground: [[[0, 840], [1600, 840]]],
+      hazards: [{ type: 'wall', x: 900, y: 430, w: 50, h: 410 }],
+      noBuild: [{ x: 860, y: 0, w: 130, h: 900 }],
+      par: 4,
+      start: START,
+    },
+    {
       id: 'sandbox',
-      name: 'Open Mountain',
-      hint: 'Build any run you like, then drag the portal wherever you want to aim.',
+      name: 'Free Ride',
+      hint: 'No rules. Build anything and drag the portal wherever you want.',
       portal: { x: 1300, y: 640, r: 55 },
       ground: [[[0, 860], [1600, 860]]],
       hazards: [],
       noBuild: [],
+      draggable: true,
       start: [
         { type: 'ramp', angle: 35, length: 380 },
         { type: 'curve', turn: 60, radius: 220 },
@@ -354,6 +455,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     ROLL: 12,          // rolling resistance
     DRAG: 0.00008,     // air drag
     TIME_LIMIT: 45,
+    PEDAL_TIME: 1,     // seconds of pedalling before the rider coasts
     angDiff, lerpAng,
 
     createRider() {
@@ -458,7 +560,13 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 
       const fwd = r.vx * Math.cos(r.ang) + r.vy * Math.sin(r.ang);
       r.wheel += (fwd / this.R) * dt;
-      if (r.grounded) r.crank += (fwd / 14) * dt;
+      if (r.t < this.PEDAL_TIME) {
+        if (r.grounded) r.crank += (fwd / 14) * dt; // pedal in off the start deck
+      } else {
+        // coast: ease the cranks to level pedals and hold them there
+        const level = Math.round(r.crank / Math.PI) * Math.PI;
+        r.crank += (level - r.crank) * (1 - Math.exp(-8 * dt));
+      }
       const speed = Math.hypot(r.vx, r.vy);
       r.maxSpeed = Math.max(r.maxSpeed, speed);
       if (r.tick % 8 === 0) r.trail.push([r.x, r.y]);
@@ -594,6 +702,10 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       ctx.lineWidth = 2;
       ctx.strokeRect(z.x, z.y, z.w, z.h);
       ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(200,40,40,0.75)';
+      ctx.font = '800 16px system-ui, -apple-system, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('NO BUILD', z.x + z.w / 2, z.y + 28);
     }
     for (const h of level.hazards) {
       if (h.type === 'spikes') {
@@ -711,7 +823,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     ctx.shadowColor = 'rgba(80,0,160,0.8)';
     ctx.shadowBlur = 8;
     ctx.fillText(P.ground ? 'FINISH · ROLL IN' : 'FINISH', 0, -P.r - 14);
-    if (opts.editing) {
+    if (opts.editing && opts.draggable) {
       ctx.shadowBlur = 0;
       ctx.font = '600 14px system-ui, -apple-system, sans-serif';
       ctx.fillStyle = 'rgba(255,255,255,0.85)';
@@ -873,7 +985,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       zones(ctx, level);
       ground(ctx, level);
       track(ctx, S.built, { selected: S.sel, invalid: S.invalid, editing: S.mode === 'edit' });
-      portal(ctx, level.portal, S.t, { editing: S.mode === 'edit', flash: S.rider && S.rider.state === 'finished' ? Math.max(0, 1 - S.endT) : 0 });
+      portal(ctx, level.portal, S.t, { editing: S.mode === 'edit', draggable: !!level.draggable, flash: S.rider && S.rider.state === 'finished' ? Math.max(0, 1 - S.endT) : 0 });
       if (S.mode === 'edit') {
         trail(ctx, S.lastTrail);
         if (S.lastEnd && S.lastEnd.state === 'crashed') crashMark(ctx, S.lastEnd);
@@ -893,14 +1005,15 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   const { LEVELS, WORLD, Track, Physics, Render } = window.MTB;
   const $ = (s) => document.querySelector(s);
   const clone = (o) => JSON.parse(JSON.stringify(o));
-  const SAVE_KEY = 'mtb-portal-sandbox-v1';
+  const SAVE_KEY = 'mtb-portal-v2';
+  const OLD_KEY = 'mtb-portal-sandbox-v1';
 
   const canvas = $('#game');
   const ctx = canvas.getContext('2d');
   const stage = $('#stage');
 
   const S = {
-    level: clone(LEVELS[0]),
+    li: 0, level: clone(LEVELS[0]),
     pieces: [], built: null, invalid: new Set(), sel: 0,
     mode: 'edit', rider: null, segs: null, endT: 0, ended: false,
     lastTrail: null, lastEnd: null, t: 0,
@@ -908,39 +1021,91 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   const view = { scale: 1, ox: 0, oy: 0, dpr: 1 };
 
   // ---------- save / load ----------
+  let save = { level: 0, unlocked: 1, tracks: {}, best: {}, portals: {} };
   function load() {
     try {
       const d = JSON.parse(localStorage.getItem(SAVE_KEY));
-      if (d && Array.isArray(d.pieces)) {
-        S.pieces = d.pieces;
-        if (d.portal) Object.assign(S.level.portal, d.portal);
-        return;
+      if (d && d.tracks) save = Object.assign(save, d);
+      else {
+        const old = JSON.parse(localStorage.getItem(OLD_KEY)); // carry over the first version's sandbox run
+        if (old && Array.isArray(old.pieces)) { save.tracks.sandbox = old.pieces; if (old.portal) save.portals.sandbox = old.portal; }
       }
     } catch (e) { /* ignore */ }
-    S.pieces = clone(S.level.start);
   }
   function persist() {
     try {
-      const P = S.level.portal;
-      localStorage.setItem(SAVE_KEY, JSON.stringify({ pieces: S.pieces, portal: { x: P.x, y: P.y } }));
+      save.level = S.li;
+      save.tracks[S.level.id] = S.pieces;
+      if (S.level.draggable) save.portals[S.level.id] = { x: S.level.portal.x, y: S.level.portal.y };
+      localStorage.setItem(SAVE_KEY, JSON.stringify(save));
     } catch (e) { /* ignore */ }
+  }
+  const isFree = (i) => !!(LEVELS[i] && LEVELS[i].draggable);
+  const unlocked = (i) => i >= 0 && i < LEVELS.length && (isFree(i) || i < save.unlocked);
+  function starsFor(L, n) { return !L.par ? 0 : n <= L.par ? 3 : n <= L.par + 2 ? 2 : 1; }
+  const starStr = (k) => '★'.repeat(k) + '☆'.repeat(3 - k);
+
+  function loadLevel(i) {
+    if (S.mode !== 'edit') toEdit();
+    S.li = Math.max(0, Math.min(LEVELS.length - 1, i));
+    S.level = clone(LEVELS[S.li]);
+    const pp = save.portals[S.level.id];
+    if (S.level.draggable && pp) Object.assign(S.level.portal, pp);
+    S.pieces = clone(save.tracks[S.level.id] || S.level.start);
+    S.sel = Math.max(0, S.pieces.length - 1);
+    S.lastTrail = null;
+    S.lastEnd = null;
+    rebuild();
+    renderStrip();
+    renderProps();
+    renderLevelBar();
+  }
+
+  function renderLevelBar() {
+    const L = S.level, b = save.best[L.id];
+    $('#lvlName').innerHTML = `<span class="lvnum">${isFree(S.li) ? '∞' : S.li + 1}</span> ${L.name}` +
+      (L.par ? ` <span class="stars">${starStr(b ? b.stars : 0)}</span>` : '');
+    $('#hint').textContent = L.hint;
+    $('#prevLvl').disabled = S.li === 0;
+    $('#nextLvl').disabled = S.li === LEVELS.length - 1;
+    $('#nextLvl').classList.toggle('locked', !unlocked(S.li + 1));
+    const menu = $('#lvlMenu');
+    menu.innerHTML = '';
+    LEVELS.forEach((lv, i) => {
+      const bb = save.best[lv.id];
+      const btn = document.createElement('button');
+      btn.className = 'lvitem' + (i === S.li ? ' cur' : '');
+      btn.disabled = !unlocked(i);
+      btn.innerHTML = `<span class="lvnum">${isFree(i) ? '∞' : i + 1}</span><span class="lvn">${lv.name}</span>` +
+        (lv.par ? `<span class="stars">${unlocked(i) ? starStr(bb ? bb.stars : 0) : '🔒'}</span>` : '');
+      btn.onclick = () => { menu.classList.add('hidden'); loadLevel(i); };
+      menu.appendChild(btn);
+    });
   }
 
   function rebuild() {
     S.built = Track.build(S.pieces);
     S.invalid = Track.validate(S.built, S.level);
     persist();
-    $('#pieceCount').textContent = `${S.pieces.length} piece${S.pieces.length === 1 ? '' : 's'}`;
+    const n = S.pieces.length;
+    $('#pieceCount').textContent = `${n} piece${n === 1 ? '' : 's'}` + (S.level.par ? ` · par ${S.level.par}` : '');
     document.querySelectorAll('.chip').forEach((el) => {
       const i = +el.dataset.i;
       el.classList.toggle('bad', S.invalid.has(i));
     });
   }
 
+  // Track-piece icons (inline SVG so they inherit the button colour)
+  const ICONS = {
+    ramp: '<svg viewBox="0 0 40 28" class="pico"><path d="M3 6 L37 22" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M11 10 V27 M19 14 V27 M27 18 V27" stroke="currentColor" stroke-width="1.6" opacity=".55"/><path d="M3 6 L37 22" stroke="#c99661" stroke-width="1.4" stroke-linecap="round"/></svg>',
+    curve: '<svg viewBox="0 0 40 28" class="pico"><path d="M3 5 Q8 24 22 24 Q32 24 37 12" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M12 19 V27 M22 24 V27 M31 20 V27" stroke="currentColor" stroke-width="1.6" opacity=".55"/><path d="M3 5 Q8 24 22 24 Q32 24 37 12" stroke="#c99661" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>',
+    gap: '<svg viewBox="0 0 40 28" class="pico"><path d="M2 16 Q8 16 12 11" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M28 13 L38 22" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M13 9 Q20 0 27 11" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2.5 3" fill="none"/><path d="M7 15 V27 M33 18 V27" stroke="currentColor" stroke-width="1.6" opacity=".55"/></svg>',
+  };
+
   // ---------- editor UI ----------
   function chipLabel(pc, i) {
     const T = Track.TYPES[pc.type];
-    return `<span class="num">${i + 1}</span><span class="ic">${T.icon}</span><span class="nm">${T.label}</span><span class="sub">${Track.describe(pc)}</span>`;
+    return `<span class="num">${i + 1}</span><span class="ic">${ICONS[pc.type]}</span><span class="nm">${T.label}</span><span class="sub">${Track.describe(pc)}</span>`;
   }
 
   function renderStrip() {
@@ -978,7 +1143,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     box.innerHTML = '';
     const head = document.createElement('div');
     head.className = 'prop-head';
-    head.innerHTML = `<strong>${S.sel + 1}. ${T.label}</strong>
+    head.innerHTML = `<strong><span class="hic">${ICONS[pc.type]}</span>${S.sel + 1}. ${T.label}</strong>
       <span class="acts">
         <button data-act="left" title="Move earlier">◀</button>
         <button data-act="right" title="Move later">▶</button>
@@ -1060,7 +1225,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   // ---------- ride ----------
   function ride() {
     hideOverlay();
-    if (S.invalid.size) return toast('Red pieces leave the map. Fix them before riding.');
+    if (S.invalid.size) return toast('Red pieces hit a no-build zone or leave the map. Fix them first.');
     S.mode = 'ride';
     S.rider = Physics.createRider();
     S.segs = S.built.segments.concat(Track.groundSegments(S.level));
@@ -1089,7 +1254,17 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     setTimeout(() => {
       if (S.rider !== r) return;
       if (r.state === 'finished') {
-        showOverlay('Portal reached! 🎉', `Time ${r.t.toFixed(2)}s · top speed ${Math.round(r.maxSpeed * 0.16)} km/h · ${S.pieces.length} pieces`, true);
+        const L = S.level, n = S.pieces.length, st = starsFor(L, n);
+        if (L.par) {
+          const prev = save.best[L.id];
+          if (!prev || st > prev.stars || (st === prev.stars && r.t < prev.time)) save.best[L.id] = { stars: st, time: r.t, pieces: n };
+          if (S.li + 1 >= save.unlocked) save.unlocked = S.li + 2;
+          persist();
+          renderLevelBar();
+        }
+        const more = L.par && n > L.par ? ` Beat par (${L.par}) for 3 stars.` : '';
+        showOverlay(L.par ? `Portal reached! ${starStr(st)}` : 'Portal reached! 🎉',
+          `Time ${r.t.toFixed(2)}s · top speed ${Math.round(r.maxSpeed * 0.16)} km/h · ${n} piece${n === 1 ? '' : 's'}.${more}`, true);
       } else if (r.state === 'crashed') {
         showOverlay('Crashed!', r.msg, false);
       } else {
@@ -1102,6 +1277,10 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     $('#ovTitle').textContent = title;
     $('#ovMsg').textContent = msg;
     $('#overlay').classList.toggle('win', win);
+    const hasNext = win && S.li < LEVELS.length - 1;
+    $('#ovNext').classList.toggle('hidden', !hasNext);
+    if (hasNext) $('#ovNext').textContent = isFree(S.li + 1) ? 'Free Ride →' : 'Next level →';
+    $('#ovRetry').className = hasNext ? 'ghost' : 'primary';
     $('#overlay').classList.remove('hidden');
   }
   function hideOverlay() { $('#overlay').classList.add('hidden'); }
@@ -1125,7 +1304,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     if (S.mode !== 'edit') return;
     const p = toWorld(e);
     const P = S.level.portal;
-    if (Math.hypot(p.x - P.x, p.y - P.y) < P.r * 1.3) {
+    if (S.level.draggable && Math.hypot(p.x - P.x, p.y - P.y) < P.r * 1.3) {
       drag = { dx: P.x - p.x, dy: P.y - p.y };
       canvas.setPointerCapture(e.pointerId);
       canvas.classList.add('dragging');
@@ -1155,9 +1334,14 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   $('#rideBtn').onclick = () => (S.mode === 'edit' ? ride() : toEdit());
   $('#ovRetry').onclick = ride;
   $('#ovEdit').onclick = toEdit;
+  $('#ovNext').onclick = () => loadLevel(S.li + 1);
+  $('#prevLvl').onclick = () => loadLevel(S.li - 1);
+  $('#nextLvl').onclick = () => (unlocked(S.li + 1) ? loadLevel(S.li + 1) : toast('Reach the portal to unlock the next level.'));
+  $('#lvlName').onclick = (e) => { e.stopPropagation(); $('#lvlMenu').classList.toggle('hidden'); };
+  document.addEventListener('click', (e) => { if (!e.target.closest('#lvlMenu')) $('#lvlMenu').classList.add('hidden'); });
   $('#clearBtn').onclick = () => {
     if (!confirmClear()) return;
-    S.pieces = [Track.TYPES.ramp.make()];
+    S.pieces = clone(S.level.start);
     S.sel = 0;
     S.lastTrail = null;
     S.lastEnd = null;
@@ -1170,12 +1354,15 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     toast('Tap Clear again to wipe your run.');
     return false;
   }
-  document.querySelectorAll('[data-add]').forEach((b) => (b.onclick = () => addPiece(b.dataset.add)));
+  document.querySelectorAll('[data-add]').forEach((b) => {
+    b.innerHTML = `${ICONS[b.dataset.add]}<span>+ ${Track.TYPES[b.dataset.add].label}</span>`;
+    b.onclick = () => addPiece(b.dataset.add);
+  });
   window.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' && e.key !== ' ' && e.key !== 'Enter') return;
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
-      if (!$('#overlay').classList.contains('hidden')) ride();
+      if (!$('#overlay').classList.contains('hidden')) ($('#ovNext').classList.contains('hidden') ? ride() : loadLevel(S.li + 1));
       else S.mode === 'edit' ? ride() : toEdit();
     } else if (e.key === 'Escape') toEdit();
     else if (S.mode === 'edit' && (e.key === 'Delete' || e.key === 'Backspace') && S.pieces.length) act('del');
@@ -1221,15 +1408,12 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   }
 
   load();
-  S.sel = Math.max(0, S.pieces.length - 1);
-  rebuild();
-  renderStrip();
-  renderProps();
   resize();
+  loadLevel(unlocked(save.level) ? save.level : 0);
   requestAnimationFrame(frame);
 
   // exposed for debugging / tests
-  window.MTB.app = { S, ride, toEdit, addPiece, select };
+  window.MTB.app = { S, ride, toEdit, addPiece, select, loadLevel, save: () => save };
 })();
 
 </script>
