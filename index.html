@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Portal Drop – MTB Run Builder</title>
+  <meta name="theme-color" content="#0f131b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portal Drop">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <div class="brand"><span class="logo">◉</span> Portal Drop</div>
+      <div id="hint">Design your run, drag the portal anywhere, then hit Ride.</div>
+      <div class="spacer"></div>
+      <span id="pieceCount" class="pill"></span>
+      <button id="clearBtn" class="ghost">Clear</button>
+      <button id="rideBtn" class="primary">▶ Ride</button>
+    </header>
+
+    <main id="stage">
+      <canvas id="game" aria-label="Game canvas"></canvas>
+      <div id="overlay" class="hidden">
+        <div class="card">
+          <h2 id="ovTitle"></h2>
+          <p id="ovMsg"></p>
+          <div class="row">
+            <button id="ovEdit" class="ghost">✎ Edit run</button>
+            <button id="ovRetry" class="primary">↻ Ride again</button>
+          </div>
+        </div>
+      </div>
+      <div id="toast"></div>
+    </main>
+
+    <section id="editor">
+      <div class="strip-wrap">
+        <div id="strip"></div>
+        <div id="addRow">
+          <button data-add="ramp">+ Ramp</button>
+          <button data-add="curve">+ Curve</button>
+          <button data-add="gap">+ Gap</button>
+        </div>
+      </div>
+      <div id="props"></div>
+    </section>
+  </div>
+
+  <script src="js/levels.js"></script>
+  <script src="js/track.js"></script>
+  <script src="js/physics.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
