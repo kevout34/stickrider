@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-  <title>Portal Drop – MTB Run Builder</title>
-  <meta name="theme-color" content="#0f131b">
+  <title>Snowboarding Bear</title>
+  <meta name="theme-color" content="#0e1a2b">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Portal Drop">
+  <meta name="apple-mobile-web-app-title" content="Snowboarding Bear">
   <style>
 :root {
-  --bg: #0f131b;
-  --panel: #171d29;
-  --panel2: #1f2735;
-  --line: #2b3546;
+  --bg: #0e1a2b;
+  --panel: #13233a;
+  --panel2: #1b3150;
+  --line: #2a4466;
   --text: #e9eef7;
   --muted: #93a0b5;
-  --accent: #36d97a;
-  --accent-ink: #062b14;
+  --accent: #4cc9ff;
+  --accent-ink: #032238;
   --sel: #ffcc33;
   --bad: #ff4d4d;
 }
@@ -36,13 +36,13 @@ button { font: inherit; color: inherit; touch-action: manipulation; cursor: poin
 #topbar { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding: 8px 12px;
   background: var(--panel); border-bottom: 1px solid var(--line); }
 .brand { font-weight: 800; letter-spacing: 0.2px; white-space: nowrap; }
-.logo { color: #b678ff; text-shadow: 0 0 10px #8a4dff; }
+.logo { text-shadow: none; }
 #hint { color: var(--muted); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .spacer { flex: 1; }
 .pill { font-size: 12px; color: var(--muted); background: var(--panel2); padding: 4px 10px; border-radius: 99px; white-space: nowrap; }
 .primary { white-space: nowrap; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 10px; padding: 9px 18px; font-weight: 800; }
 .primary:active { transform: translateY(1px); }
-.ghost { background: transparent; border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; color: var(--text); }
+.ghost { white-space: nowrap; background: transparent; border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; color: var(--text); }
 body.riding #rideBtn { background: #ff6b4a; color: #2b0a02; }
 
 /* stage */
@@ -57,7 +57,7 @@ body.riding #rideBtn { background: #ff6b4a; color: #2b0a02; }
 .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px;
   max-width: min(420px, 90%); text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.45); }
 .card h2 { margin: 0 0 6px; font-size: 22px; }
-#overlay.win .card h2 { color: #c99bff; }
+#overlay.win .card h2 { color: #8fdcff; }
 .card p { margin: 0 0 16px; color: var(--muted); line-height: 1.4; }
 .card .row { display: flex; gap: 10px; justify-content: center; }
 
@@ -75,13 +75,13 @@ body.riding #editor { opacity: 0.45; pointer-events: none; }
 .chip { flex: 0 0 auto; display: grid; grid-template-columns: auto auto auto; grid-template-rows: auto auto; column-gap: 6px;
   align-items: center; text-align: left; background: var(--panel2); border: 2px solid transparent; border-radius: 10px; padding: 6px 10px; }
 .chip .num { grid-row: 1 / 3; font-size: 11px; color: var(--muted); }
-.chip .ic { grid-row: 1 / 3; color: #6b4a2e; display: flex; }
+.chip .ic { grid-row: 1 / 3; color: #3f6f9f; display: flex; }
 .chip .nm { font-weight: 700; font-size: 13px; }
 .chip .sub { font-size: 11px; color: var(--muted); grid-column: 3; }
 .chip.sel { border-color: var(--sel); }
 .chip.bad { border-color: var(--bad); background: #3a1d22; }
 #addRow { display: flex; gap: 6px; flex-wrap: wrap; }
-#addRow button { background: transparent; border: 1px dashed #4a5a75; border-radius: 10px; padding: 7px 12px; font-weight: 600; color: #cdd7e8; }
+#addRow button { background: transparent; border: 1px dashed #4a6a95; border-radius: 10px; padding: 7px 12px; font-weight: 600; color: #cdd7e8; }
 #addRow button:active { background: var(--panel2); }
 .empty { color: var(--muted); font-size: 13px; padding: 8px 2px; }
 
@@ -123,7 +123,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 .navbtn:disabled { opacity: 0.35; }
 .navbtn.locked { opacity: 0.5; }
 #lvlName { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; height: 34px; padding: 0 12px; font-weight: 700; white-space: nowrap; }
-.lvnum { display: inline-grid; place-items: center; min-width: 20px; height: 20px; border-radius: 6px; background: #b678ff; color: #1b0838; font-size: 12px; font-weight: 800; margin-right: 4px; }
+.lvnum { display: inline-grid; place-items: center; min-width: 20px; height: 20px; border-radius: 6px; background: #4cc9ff; color: #032238; font-size: 12px; font-weight: 800; margin-right: 4px; }
 .stars { color: var(--sel); letter-spacing: 1px; font-size: 13px; margin-left: 4px; }
 #lvlMenu { position: absolute; top: 40px; left: 36px; z-index: 20; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 6px; min-width: 240px; box-shadow: 0 16px 40px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 2px; }
 #lvlMenu.hidden { display: none; }
@@ -142,20 +142,73 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 
 /* piece icons */
 .pico { width: 34px; height: 24px; display: block; }
-.chip .ic { background: #e9d9c4; border-radius: 7px; padding: 2px 3px; }
-.chip.sel .ic { background: #ffe7a3; }
-#addRow button { display: flex; align-items: center; gap: 6px; color: #e2c9a6; }
+.chip .ic { background: #d7e7f6; border-radius: 7px; padding: 2px 3px; }
+.chip.sel .ic { background: #fff1c2; }
+#addRow button { display: flex; align-items: center; gap: 6px; color: #9fd3ff; }
 #addRow button span { color: #cdd7e8; }
 #addRow .pico { width: 30px; height: 21px; }
-.hic { display: inline-flex; vertical-align: middle; margin-right: 6px; color: #e2c9a6; }
+.hic { display: inline-flex; vertical-align: middle; margin-right: 6px; color: #9fd3ff; }
 .hic .pico { width: 30px; height: 21px; }
+
+/* undo */
+#undoBtn:disabled { opacity: 0.35; cursor: default; }
+
+/* props layout + vertical "Bend" slider */
+.prop-body { display: flex; flex-direction: column; gap: 6px; }
+.prop-body.has-v { flex-direction: row; align-items: stretch; gap: 12px; }
+.prop-side { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; justify-content: center; }
+.vprop { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 0 0 auto; width: 84px; }
+.vprop label { justify-content: center; }
+.vprop .val { font-size: 12px; text-align: center; white-space: nowrap; }
+.vwrap { position: relative; width: 34px; height: 120px; }
+.vwrap input[type=range] { position: absolute; left: 50%; top: 50%; width: 120px; height: 34px; margin: 0;
+  transform: translate(-50%, -50%) rotate(-90deg); }
+
+/* pro / paywall */
+.pro { white-space: nowrap; background: linear-gradient(135deg, #ffd56b, #ffb238); color: #3a2500; border: 0; border-radius: 10px; padding: 8px 12px; font-weight: 800; }
+.lvsep { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); padding: 8px 10px 2px; display: flex; justify-content: space-between; }
+.lvsep span { text-transform: none; letter-spacing: 0; color: var(--sel); }
+.lvitem.prem .lvnum { background: #ffc94a; color: #3a2500; }
+.probadge { font-size: 10px; font-weight: 800; background: linear-gradient(135deg, #ffd56b, #ffb238); color: #3a2500; border-radius: 6px; padding: 2px 6px; }
+#paywall { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(8,10,16,0.6); z-index: 30;
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); overflow-y: auto; padding: 10px; }
+.card.pw { position: relative; max-width: 420px; width: 100%; text-align: center; max-height: calc(100dvh - 20px); overflow-y: auto; padding: 16px 20px; }
+.pwx { position: absolute; top: 10px; right: 10px; background: transparent; border: 0; color: var(--muted); font-size: 18px; }
+.crown { font-size: 34px; line-height: 1; }
+.pwsub { margin: 4px 0 10px !important; }
+.pwsub strong { color: var(--sel); font-size: 18px; }
+#pwLevels { list-style: none; margin: 0 0 14px; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 6px; }
+#pwLevels li { background: var(--panel2); border-radius: 10px; padding: 7px 10px; font-weight: 700; font-size: 14px; }
+#pwLevels li .lvnum { background: #ffc94a; color: #3a2500; }
+#pwLevels small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.primary.big { width: 100%; padding: 13px; font-size: 16px; }
+.primary:disabled { opacity: 0.5; }
+.linkbtn { background: none; border: 0; color: var(--muted); text-decoration: underline; margin-top: 8px; font-size: 13px; }
+.fine { font-size: 11px !important; color: var(--muted); margin: 8px 0 0 !important; }
+.fine a { color: var(--muted); }
+@media (max-height: 760px) { #pwLevels small { display: none; } #pwLevels li { padding: 5px 10px; } }
+@media (max-height: 520px) {
+  .crown { display: none; }
+  #pwLevels { display: grid; grid-template-columns: 1fr 1fr; }
+  .card.pw h2 { font-size: 19px; }
+  .pwsub { font-size: 13px; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .brand, .pill { display: none; }
+  #topbar { gap: 6px; padding: 6px 10px; }
+  #topbar button { padding-left: 10px; padding-right: 10px; }
+}
+
+/* version label */
+.ver { font-size: 11px; font-weight: 600; color: var(--muted); margin-left: 2px; }
+.lvfoot { font-size: 11px; color: var(--muted); text-align: right; padding: 6px 10px 2px; border-top: 1px solid var(--line); margin-top: 4px; }
 
 </style>
 </head>
 <body>
   <div id="app">
     <header id="topbar">
-      <div class="brand"><span class="logo">◉</span> Portal Drop</div>
+      <div class="brand"><span class="logo">🐻</span> Snowboarding Bear <span id="ver" class="ver"></span></div>
       <div class="lvlnav">
         <button id="prevLvl" class="navbtn" aria-label="Previous level">‹</button>
         <button id="lvlName"></button>
@@ -165,6 +218,8 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       <div id="hint"></div>
       <div class="spacer"></div>
       <span id="pieceCount" class="pill"></span>
+      <button id="proBtn" class="pro" title="Unlock Pro Runs">👑 Pro</button>
+      <button id="undoBtn" class="ghost" title="Undo (Ctrl/Cmd+Z)" disabled>↶ Undo</button>
       <button id="clearBtn" class="ghost">Clear</button>
       <button id="rideBtn" class="primary">▶ Ride</button>
     </header>
@@ -180,6 +235,18 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
             <button id="ovRetry" class="primary">↻ Ride again</button>
             <button id="ovNext" class="primary hidden">Next level →</button>
           </div>
+        </div>
+      </div>
+      <div id="paywall" class="hidden" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
+        <div class="card pw">
+          <button id="pwClose" class="pwx" aria-label="Close">✕</button>
+          <div class="crown">👑</div>
+          <h2 id="pwTitle">Unlock Pro Runs</h2>
+          <p class="pwsub">5 harder levels: multi-gap runs, horizontal crevices and more.<br><strong id="pwPrice"></strong></p>
+          <ul id="pwLevels"></ul>
+          <button id="pwBuy" class="primary big">Subscribe</button>
+          <button id="pwRestore" class="linkbtn">Restore purchases</button>
+          <p id="pwFine" class="fine"></p>
         </div>
       </div>
       <div id="toast"></div>
@@ -199,13 +266,24 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   </div>
 
   <script>
+// Game version. Bump this (and add a CHANGELOG.md entry) for each saved release.
+(function (G) {
+  const MTB = (G.MTB = G.MTB || {});
+  MTB.VERSION = '1.1';
+  MTB.GAME = 'Snowboarding Bear';
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+  <script>
 // Level definitions. World is 1600 x 900 units, y grows downward.
 // ground:    fixed dirt surfaces (polylines, listed left -> right)
 // hazards:   rectangles that crash the rider on contact (type: 'spikes' | 'wall')
 // noBuild:   rectangles your track may not pass through (forces jumps)
-// portal:    the finish line. ground:true = must be rolling on the ground (no flying in)
+// portal:    the finish line. ground:true = must be rolling on the ground (no flying in); label = custom sign text
 // par:       piece count for 3 stars
 // draggable: portal can be moved by the player (Free Ride)
+// premium:   requires the annual subscription
+// tools:     which track pieces can be used (default: all)
 (function (G) {
   const MTB = (G.MTB = G.MTB || {});
   MTB.WORLD = { W: 1600, H: 900 };
@@ -215,8 +293,9 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   MTB.LEVELS = [
     {
       id: 'drop-in',
+      tools: ['ramp'],
       name: 'Drop In',
-      hint: 'Shape a smooth run down to the portal on the valley floor. Roll in on your wheels.',
+      hint: 'Ramps only! Chain a steep drop into a gentler ramp and ride into the portal on the snow.',
       portal: { x: 1350, y: 775, r: 60, ground: true },
       ground: [[[0, 830], [1600, 830]]],
       hazards: [],
@@ -226,8 +305,9 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     },
     {
       id: 'sky-portal',
+      tools: ['ramp', 'curve'],
       name: 'Sky Portal',
-      hint: 'This portal floats in mid-air. Finish with an up-curve to launch into it.',
+      hint: 'New piece: Curve! Finish with an up-curve to launch the bear into the floating portal.',
       portal: { x: 1250, y: 380, r: 50 },
       ground: [[[0, 870], [1600, 870]]],
       hazards: [],
@@ -237,6 +317,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     },
     {
       id: 'mind-the-gap',
+      tools: ['ramp', 'curve'],
       name: 'Mind the Gap',
       hint: 'Build a kicker, clear the spike canyon and land on the far slope.',
       portal: { x: 1450, y: 650, r: 60, ground: true },
@@ -249,7 +330,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     {
       id: 'thread-the-needle',
       name: 'Thread the Needle',
-      hint: 'Fly through the window in the cliff to reach the portal beyond.',
+      hint: 'New piece: Gap! Fly through the window in the cliff to reach the portal beyond.',
       portal: { x: 1380, y: 470, r: 45 },
       ground: [[[0, 880], [1600, 880]]],
       hazards: [
@@ -264,11 +345,104 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       id: 'over-the-wall',
       name: 'Over the Wall',
       hint: 'Clear the rock wall, then add a Gap piece to place your own landing ramp.',
-      portal: { x: 1400, y: 780, r: 50, ground: true },
+      portal: { x: 1400, y: 780, r: 50, ground: true, label: 'BUILD GAP JUMP' },
       ground: [[[0, 840], [1600, 840]]],
       hazards: [{ type: 'wall', x: 900, y: 430, w: 50, h: 410 }],
       noBuild: [{ x: 860, y: 0, w: 130, h: 900 }],
       par: 4,
+      start: START,
+    },
+    // ---------------- Premium levels (subscription) ----------------
+    {
+      id: 'the-crevice',
+      name: 'The Crevice',
+      premium: true,
+      hint: 'Fly flat and fast through the horizontal crack in the rock.',
+      portal: { x: 1460, y: 655, r: 55, ground: true },
+      ground: [[[1080, 600], [1300, 700], [1600, 720]]],
+      hazards: [
+        { type: 'wall', x: 700, y: 0, w: 380, h: 400 },
+        { type: 'wall', x: 700, y: 525, w: 380, h: 375 },
+      ],
+      noBuild: [{ x: 660, y: 0, w: 420, h: 900 }],
+      par: 2,
+      start: START,
+    },
+    {
+      id: 'double-trouble',
+      name: 'Double Trouble',
+      premium: true,
+      hint: 'Two spike canyons. Gap-jump to a second kicker, then stomp the far landing.',
+      portal: { x: 1510, y: 790, r: 50, ground: true },
+      ground: [[[1200, 690], [1330, 770], [1440, 830], [1600, 840]]],
+      hazards: [
+        { type: 'spikes', x: 430, y: 860, w: 220, h: 40 },
+        { type: 'spikes', x: 1000, y: 860, w: 200, h: 40 },
+      ],
+      noBuild: [
+        { x: 430, y: 0, w: 220, h: 900 },
+        { x: 1000, y: 0, w: 200, h: 900 },
+      ],
+      par: 5,
+      start: START,
+    },
+    {
+      id: 'sky-thread',
+      name: 'Sky Thread',
+      premium: true,
+      hint: 'Gap over the canyon, then thread the crevice into a floating portal.',
+      portal: { x: 1460, y: 450, r: 45 },
+      ground: [[[0, 880], [1600, 880]]],
+      hazards: [
+        { type: 'spikes', x: 480, y: 840, w: 200, h: 40 },
+        { type: 'wall', x: 1080, y: 0, w: 200, h: 400 },
+        { type: 'wall', x: 1080, y: 520, w: 200, h: 360 },
+      ],
+      noBuild: [
+        { x: 480, y: 0, w: 200, h: 900 },
+        { x: 1040, y: 0, w: 560, h: 900 },
+      ],
+      par: 4,
+      start: START,
+    },
+    {
+      id: 'stacked-cracks',
+      name: 'Stacked Cracks',
+      premium: true,
+      hint: 'Two crevices at different heights. Land between them and line up the second.',
+      portal: { x: 1525, y: 700, r: 55, ground: true },
+      ground: [[[1300, 640], [1450, 745], [1600, 755]]],
+      hazards: [
+        { type: 'wall', x: 560, y: 0, w: 220, h: 360 },
+        { type: 'wall', x: 560, y: 480, w: 220, h: 420 },
+        { type: 'wall', x: 1080, y: 0, w: 220, h: 500 },
+        { type: 'wall', x: 1080, y: 625, w: 220, h: 275 },
+      ],
+      noBuild: [
+        { x: 520, y: 0, w: 260, h: 900 },
+        { x: 1040, y: 0, w: 260, h: 900 },
+      ],
+      par: 5,
+      start: START,
+    },
+    {
+      id: 'triple-canyon',
+      name: 'Triple Canyon',
+      premium: true,
+      hint: 'Three canyons in a row. Build a landing and a kicker between each one.',
+      portal: { x: 1520, y: 745, r: 50, ground: true },
+      ground: [[[1320, 700], [1450, 790], [1600, 800]]],
+      hazards: [
+        { type: 'spikes', x: 380, y: 860, w: 140, h: 40 },
+        { type: 'spikes', x: 760, y: 860, w: 160, h: 40 },
+        { type: 'spikes', x: 1160, y: 860, w: 160, h: 40 },
+      ],
+      noBuild: [
+        { x: 380, y: 0, w: 140, h: 900 },
+        { x: 760, y: 0, w: 160, h: 900 },
+        { x: 1160, y: 0, w: 160, h: 900 },
+      ],
+      par: 6,
       start: START,
     },
     {
@@ -286,6 +460,139 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       ],
     },
   ];
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+  <script>
+// Subscription / entitlement layer for the "Pro Runs" (premium levels).
+//
+// The game only ever asks Store.isPro() and calls Store.purchase() / Store.restore().
+// Where the money actually moves depends on where the game runs:
+//
+//   iOS app (Capacitor)  -> Apple In-App Purchase via RevenueCat
+//                           (plugin: @revenuecat/purchases-capacitor). Apple requires
+//                           IAP for digital subscriptions sold inside an iOS app.
+//   Website              -> a checkout page you configure (e.g. a Stripe Payment Link).
+//                           NOTE: a static site cannot verify payment by itself, so the
+//                           web unlock is honour-system until you add a small backend
+//                           (or a licence-key check). Fine for a launch; not tamper-proof.
+//   Test mode            -> add ?dev=1 to the URL (or run on localhost). "Subscribe"
+//                           unlocks instantly with no charge so you can test the flow.
+(function (G) {
+  const MTB = (G.MTB = G.MTB || {});
+
+  const CONFIG = {
+    priceLabel: '$4.99 / year',
+    productId: 'snowboarding_bear_pro_annual',       // App Store Connect product id
+    entitlementId: 'pro',                       // RevenueCat entitlement id
+    revenueCatApiKey: '',                       // RevenueCat public iOS SDK key (appl_...)
+    webCheckoutUrl: '',                         // e.g. https://buy.stripe.com/xxxx
+    termsUrl: '',                               // required by Apple for subscriptions
+    privacyUrl: '',
+  };
+
+  const KEY = 'snowbear-pro-v1';
+  const YEAR_MS = 365 * 24 * 3600 * 1000;
+  const qs = new URLSearchParams(G.location ? G.location.search : '');
+  const host = G.location ? G.location.hostname : '';
+  const testMode = qs.get('dev') === '1' || host === 'localhost' || host === '127.0.0.1';
+
+  const readEnt = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } };
+  const writeEnt = (e) => { try { e ? localStorage.setItem(KEY, JSON.stringify(e)) : localStorage.removeItem(KEY); } catch (x) { /* ignore */ } };
+
+  function nativePurchases() {
+    const cap = G.Capacitor;
+    return cap && cap.isNativePlatform && cap.isNativePlatform() && cap.Plugins && cap.Plugins.Purchases ? cap.Plugins.Purchases : null;
+  }
+
+  let listeners = [];
+  const emit = () => listeners.forEach((f) => f(Store.isPro()));
+
+  const Store = {
+    CONFIG,
+    testMode,
+    onChange(fn) { listeners.push(fn); },
+
+    isPro() {
+      const e = readEnt();
+      return !!(e && e.active && (!e.expires || e.expires > Date.now()));
+    },
+
+    // Which way payment will go, for the paywall's fine print.
+    channel() {
+      if (nativePurchases()) return 'ios';
+      if (testMode) return 'test';
+      if (CONFIG.webCheckoutUrl) return 'web';
+      return 'none';
+    },
+
+    async init() {
+      const P = nativePurchases();
+      if (P && CONFIG.revenueCatApiKey) {
+        try {
+          await P.configure({ apiKey: CONFIG.revenueCatApiKey });
+          await this._syncNative();
+        } catch (e) { console.warn('Purchases init failed', e); }
+      }
+      // Return trip from a web checkout page: ?pro=success
+      if (qs.get('pro') === 'success' && CONFIG.webCheckoutUrl) {
+        writeEnt({ active: true, source: 'web', expires: Date.now() + YEAR_MS });
+        emit();
+      }
+    },
+
+    async _syncNative() {
+      const P = nativePurchases();
+      const { customerInfo } = await P.getCustomerInfo();
+      const ent = customerInfo && customerInfo.entitlements && customerInfo.entitlements.active[CONFIG.entitlementId];
+      writeEnt(ent ? { active: true, source: 'ios', expires: ent.expirationDate ? Date.parse(ent.expirationDate) : 0 } : null);
+      emit();
+    },
+
+    // Resolves { ok, message }
+    async purchase() {
+      const ch = this.channel();
+      if (ch === 'ios') {
+        try {
+          const P = nativePurchases();
+          const { current } = await P.getOfferings();
+          const pkg = current && (current.annual || current.availablePackages[0]);
+          if (!pkg) return { ok: false, message: 'Subscription not available right now.' };
+          await P.purchasePackage({ aPackage: pkg });
+          await this._syncNative();
+          return { ok: this.isPro(), message: this.isPro() ? '' : 'Purchase not completed.' };
+        } catch (e) {
+          return { ok: false, message: e && e.userCancelled ? '' : 'Purchase failed. Please try again.' };
+        }
+      }
+      if (ch === 'test') {
+        writeEnt({ active: true, source: 'test', expires: Date.now() + YEAR_MS });
+        emit();
+        return { ok: true, message: 'Test mode: unlocked without charge.' };
+      }
+      if (ch === 'web') {
+        const back = location.origin + location.pathname + '?pro=success';
+        const url = CONFIG.webCheckoutUrl + (CONFIG.webCheckoutUrl.includes('?') ? '&' : '?') + 'client_reference_id=snowboarding-bear&redirect=' + encodeURIComponent(back);
+        location.href = url;
+        return { ok: false, message: 'Opening checkout…' };
+      }
+      return { ok: false, message: 'Subscriptions are coming soon!' };
+    },
+
+    async restore() {
+      const P = nativePurchases();
+      if (P) {
+        try { await P.restorePurchases(); await this._syncNative(); } catch (e) { /* ignore */ }
+        return { ok: this.isPro(), message: this.isPro() ? 'Subscription restored.' : 'No active subscription found.' };
+      }
+      return { ok: this.isPro(), message: this.isPro() ? 'Pro is active on this device.' : 'No subscription found on this device.' };
+    },
+
+    // Test helper: ?dev=1 then MTB.Store.reset() in the console
+    reset() { writeEnt(null); emit(); },
+  };
+
+  MTB.Store = Store;
 })(typeof window !== 'undefined' ? window : globalThis);
 
 </script>
@@ -332,7 +639,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
         label: 'Curve', icon: '◡',
         make: () => ({ type: 'curve', turn: 40, radius: 180 }),
         params: [
-          { k: 'turn', label: 'Bend', min: -150, max: 360, step: 1 },
+          { k: 'turn', label: 'Bend', min: -150, max: 360, step: 1, vertical: true },
           { k: 'radius', label: 'Radius', min: 30, max: 600, step: 5 },
         ],
       },
@@ -455,7 +762,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     ROLL: 12,          // rolling resistance
     DRAG: 0.00008,     // air drag
     TIME_LIMIT: 45,
-    PEDAL_TIME: 1,     // seconds of pedalling before the rider coasts
+    PEDAL_TIME: 0,     // (unused for the snowboard)
     angDiff, lerpAng,
 
     createRider() {
@@ -541,10 +848,10 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       if (c.hit) {
         const gAng = Math.atan2(c.seg.ty, c.seg.tx);
         if (r.air > 0.12) {
-          if (c.impact > this.CRASH_IMPACT) return this.crash(r, 'Cased it! That landing was too flat for the speed – land on a downslope.');
-          if (Math.abs(angDiff(r.ang, gAng)) > (this.CRASH_ANGLE * Math.PI) / 180) return this.crash(r, 'Landed crooked! Match the landing grade to your flight path.');
+          if (c.impact > this.CRASH_IMPACT) return this.crash(r, 'Wipeout! That landing was too flat for the speed. Land on a downslope.');
+          if (Math.abs(angDiff(r.ang, gAng)) > (this.CRASH_ANGLE * Math.PI) / 180) return this.crash(r, 'Caught an edge! Match the landing grade to the bear\'s flight path.');
         } else if (c.impact > this.CRASH_IMPACT * 1.25) {
-          return this.crash(r, 'Slammed into the ramp! Use a bigger radius.');
+          return this.crash(r, 'Face-plant! That transition is too tight. Use a bigger radius.');
         }
         r.grounded = true;
         r.air = 0;
@@ -576,7 +883,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 
       for (const hz of level.hazards) {
         if (r.x > hz.x - 6 && r.x < hz.x + hz.w + 6 && r.y > hz.y - 6 && r.y < hz.y + hz.h + 6) {
-          return this.crash(r, hz.type === 'spikes' ? 'Into the spikes! You need more air.' : 'Hit the rock wall!');
+          return this.crash(r, hz.type === 'spikes' ? 'Into the ice spikes! You need more air.' : 'Hit the rock wall!');
         }
       }
       if (r.y > H + 60) return this.crash(r, 'Fell off the world!');
@@ -584,7 +891,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 
       if (r.grounded && speed < 8) {
         r.stall += dt;
-        if (r.stall > 1.2) { r.state = 'stalled'; r.msg = 'Ran out of speed. Steeper or shorter run needed.'; }
+        if (r.stall > 1.2) { r.state = 'stalled'; r.msg = 'The bear ran out of speed. Steeper or shorter run needed.'; }
       } else r.stall = 0;
       if (r.t > this.TIME_LIMIT) { r.state = 'stalled'; r.msg = 'Out of time.'; }
     },
@@ -595,20 +902,54 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 
 </script>
   <script>
-// Canvas drawing: scenery, track, portal, stick-figure rider.
+// Canvas drawing: winter scenery, snow track, portal, snowboarding bear.
 (function (G) {
   const MTB = (G.MTB = G.MTB || {});
   const { W, H } = MTB.WORLD;
 
-  // Precomputed scenery
-  const far = [], near = [], pines = [];
-  for (let x = 0; x <= W; x += 16) {
-    far.push([x, 470 + Math.sin(x * 0.0042) * 70 + Math.sin(x * 0.011 + 1.3) * 32 + Math.sin(x * 0.031) * 10]);
-    near.push([x, 640 + Math.sin(x * 0.0031 + 2) * 45 + Math.sin(x * 0.009 + 0.5) * 25 + Math.sin(x * 0.027) * 8]);
+  // ---------- precomputed scenery ----------
+  // Seeded random so the forest looks hand-placed but is identical every load.
+  let seed = 7;
+  const rnd = () => { seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t ^= t + Math.imul(t ^ (t >>> 7), 61 | t); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const ridge = (base, a, b, c, ph) => (x) => base + Math.sin(x * 0.0042 * a + ph) * 70 * b + Math.sin(x * 0.011 * a + 1.3 + ph) * 30 * c + Math.sin(x * 0.031 + ph) * 8;
+  const farY = ridge(440, 1, 1.15, 1.1, 0);
+  const midY = ridge(560, 0.8, 0.7, 0.9, 2.1);
+  const nearY = ridge(660, 0.7, 0.6, 0.8, 4.2);
+  const far = [], mid = [], near = [], flakes = [];
+  for (let x = 0; x <= W; x += 16) { far.push([x, farY(x)]); mid.push([x, midY(x)]); near.push([x, nearY(x)]); }
+
+  // Trees grow in loose clumps scattered down the slopes, plus a few loners.
+  function forest(yAt, clumps, perClump, spreadX, depth, hMin, hMax) {
+    const out = [];
+    for (let c = 0; c < clumps; c++) {
+      const cx = rnd() * W;
+      const cy = rnd() * depth;
+      const n = Math.round(perClump * (0.4 + rnd()));
+      for (let k = 0; k < n; k++) {
+        const x = cx + (rnd() - 0.5) * spreadX * (0.5 + rnd());
+        const y = yAt(x) + 6 + Math.max(0, cy + (rnd() - 0.5) * 50);
+        out.push([x, y, hMin + rnd() * (hMax - hMin) * (0.6 + 0.4 * (y - yAt(x)) / (depth + 40))]);
+      }
+    }
+    for (let k = 0; k < clumps; k++) { const x = rnd() * W; out.push([x, yAt(x) + 6 + rnd() * depth, hMin + rnd() * (hMax - hMin)]); }
+    return out.sort((a, b) => a[1] - b[1]); // farther (higher) trees first
   }
-  for (let i = 0, x = 8; x < W; i++, x += 22 + ((i * 37) % 19)) {
-    const k = Math.min(near.length - 1, Math.round(x / 16));
-    pines.push([x, near[k][1] + 4, 18 + ((i * 53) % 17)]);
+  const midTrees = forest(midY, 14, 8, 140, 60, 15, 26);
+  const nearTrees = forest(nearY, 15, 8, 170, 160, 24, 48);
+  for (let i = 0; i < 90; i++) flakes.push([(i * 397) % W, (i * 211) % H, 1 + (i % 3) * 0.8, 18 + (i % 5) * 9, i * 1.7]);
+
+  function pine(ctx, x, y, h, green, shade) {
+    const w = h * 0.36;
+    ctx.fillStyle = shade;
+    ctx.fillRect(x - h * 0.035, y - h * 0.12, h * 0.07, h * 0.14);
+    for (let t = 0; t < 3; t++) {
+      const top = y - h + t * h * 0.27, base = y - h * 0.1 - (2 - t) * h * 0.2, ww = w * (0.55 + t * 0.22);
+      ctx.fillStyle = green;
+      ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x - ww, base); ctx.lineTo(x + ww, base); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.92)'; // snow resting on each tier
+      ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x - ww * 0.42, top + (base - top) * 0.42); ctx.lineTo(x, top + (base - top) * 0.3); ctx.lineTo(x + ww * 0.42, top + (base - top) * 0.42); ctx.closePath(); ctx.fill();
+      ctx.fillRect(x - ww, base - 1.2, ww * 2, 1.6);
+    }
   }
 
   function fillHills(ctx, pts, color) {
@@ -623,47 +964,52 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 
   function scenery(ctx, t) {
     const sky = ctx.createLinearGradient(0, 0, 0, H);
-    sky.addColorStop(0, '#5aa9f0');
-    sky.addColorStop(0.6, '#bfe2ff');
-    sky.addColorStop(1, '#f4efe2');
+    sky.addColorStop(0, '#5f9fd8');
+    sky.addColorStop(0.55, '#b9d9f2');
+    sky.addColorStop(1, '#eef6fc');
     ctx.fillStyle = sky;
     ctx.fillRect(0, 0, W, H);
-    // sun
-    const sg = ctx.createRadialGradient(1380, 140, 10, 1380, 140, 120);
-    sg.addColorStop(0, 'rgba(255,250,220,1)');
-    sg.addColorStop(0.35, 'rgba(255,236,170,0.7)');
-    sg.addColorStop(1, 'rgba(255,236,170,0)');
+    const sg = ctx.createRadialGradient(1380, 130, 8, 1380, 130, 110);
+    sg.addColorStop(0, 'rgba(255,255,240,1)');
+    sg.addColorStop(0.35, 'rgba(255,250,220,0.6)');
+    sg.addColorStop(1, 'rgba(255,250,220,0)');
     ctx.fillStyle = sg;
-    ctx.fillRect(1240, 0, 280, 280);
-    // clouds
-    ctx.fillStyle = 'rgba(255,255,255,0.75)';
-    for (let i = 0; i < 4; i++) {
-      const cx = ((i * 430 + t * (6 + i * 2)) % (W + 300)) - 150, cy = 90 + i * 55;
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, 70, 18, 0, 0, Math.PI * 2);
-      ctx.ellipse(cx + 40, cy - 10, 45, 20, 0, 0, Math.PI * 2);
-      ctx.ellipse(cx - 35, cy - 4, 35, 14, 0, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    fillHills(ctx, far, '#a9c3dd');
-    // snow caps on far range
-    ctx.fillStyle = 'rgba(255,255,255,0.55)';
+    ctx.fillRect(1260, 10, 240, 240);
+    // far peaks, heavily snow-capped
+    fillHills(ctx, far, '#a8c2dc');
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
     for (let k = 2; k < far.length - 2; k++) {
       const [x, y] = far[k];
-      if (y < far[k - 2][1] && y < far[k + 2][1] && y < 440) {
-        ctx.beginPath(); ctx.moveTo(x - 30, y + 22); ctx.lineTo(x, y); ctx.lineTo(x + 30, y + 22); ctx.closePath(); ctx.fill();
+      if (y < far[k - 2][1] && y < far[k + 2][1]) {
+        ctx.beginPath();
+        ctx.moveTo(x - 42, y + 30); ctx.lineTo(x - 14, y + 20); ctx.lineTo(x, y); ctx.lineTo(x + 16, y + 22); ctx.lineTo(x + 42, y + 30);
+        ctx.closePath(); ctx.fill();
       }
     }
-    fillHills(ctx, near, '#86a98f');
-    ctx.fillStyle = '#5f8a6c';
-    for (const [x, y, h] of pines) {
-      ctx.beginPath(); ctx.moveTo(x, y - h); ctx.lineTo(x - h * 0.33, y); ctx.lineTo(x + h * 0.33, y); ctx.closePath(); ctx.fill();
+    // haze between ranges
+    const hz = ctx.createLinearGradient(0, 420, 0, 640);
+    hz.addColorStop(0, 'rgba(235,244,252,0)');
+    hz.addColorStop(1, 'rgba(235,244,252,0.55)');
+    ctx.fillStyle = hz;
+    ctx.fillRect(0, 380, W, 300);
+    fillHills(ctx, mid, '#d2e1ee');
+    for (const [x, y, h] of midTrees) pine(ctx, x, y, h, '#7d9ca6', '#6b8790');
+    fillHills(ctx, near, '#e8f0f7');
+    for (const [x, y, h] of nearTrees) pine(ctx, x, y, h, '#3d6656', '#4a3526');
+  }
+
+  function snowfall(ctx, t) {
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    for (const [x0, y0, r, sp, ph] of flakes) {
+      const y = (y0 + t * sp) % H;
+      const x = (x0 + Math.sin(t * 0.8 + ph) * 12 + t * 6) % W;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
     }
   }
 
   function grid(ctx) {
     ctx.save();
-    ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.28)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     for (let x = 100; x < W; x += 100) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
@@ -672,25 +1018,36 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     ctx.restore();
   }
 
-  function ground(ctx, level) {
-    for (const pl of level.ground) {
-      const g = ctx.createLinearGradient(0, Math.min(...pl.map((p) => p[1])), 0, H);
-      g.addColorStop(0, '#8a6440');
-      g.addColorStop(1, '#5a3d24');
+  function snowSurface(ctx, pts, fill) {
+    // fill down to the bottom like a snow bank, then a crisp top edge
+    if (fill) {
+      const g = ctx.createLinearGradient(0, Math.min(...pts.map((p) => p.y)), 0, H);
+      g.addColorStop(0, '#fbfdff');
+      g.addColorStop(1, '#cfdeec');
       ctx.fillStyle = g;
       ctx.beginPath();
-      ctx.moveTo(pl[0][0], H);
-      for (const [x, y] of pl) ctx.lineTo(x, y);
-      ctx.lineTo(pl[pl.length - 1][0], H);
+      ctx.moveTo(pts[0].x, H);
+      for (const p of pts) ctx.lineTo(p.x, p.y);
+      ctx.lineTo(pts[pts.length - 1].x, H);
       ctx.closePath();
       ctx.fill();
-      ctx.strokeStyle = '#4c9a3f';
-      ctx.lineWidth = 6;
-      ctx.lineJoin = 'round';
-      ctx.beginPath();
-      pl.forEach(([x, y], i) => (i ? ctx.lineTo(x, y - 2) : ctx.moveTo(x, y - 2)));
-      ctx.stroke();
     }
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    pts.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+    ctx.strokeStyle = '#8fb0cf';
+    ctx.lineWidth = 8;
+    ctx.stroke();
+    ctx.beginPath();
+    pts.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y - 1.5) : ctx.moveTo(p.x, p.y - 1.5)));
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 4;
+    ctx.stroke();
+  }
+
+  function ground(ctx, level) {
+    for (const pl of level.ground) snowSurface(ctx, pl.map(([x, y]) => ({ x, y })), true);
   }
 
   function zones(ctx, level) {
@@ -709,45 +1066,45 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     }
     for (const h of level.hazards) {
       if (h.type === 'spikes') {
-        ctx.fillStyle = '#6b6f7a';
+        // ice spikes
+        ctx.fillStyle = '#6f8aa6';
         ctx.fillRect(h.x, h.y + h.h * 0.6, h.w, h.h * 0.4);
-        ctx.fillStyle = '#c7ccd6';
         for (let x = h.x; x < h.x + h.w; x += 16) {
+          const g = ctx.createLinearGradient(0, h.y, 0, h.y + h.h * 0.6);
+          g.addColorStop(0, '#ffffff');
+          g.addColorStop(1, '#8fd3ff');
+          ctx.fillStyle = g;
           ctx.beginPath(); ctx.moveTo(x, h.y + h.h * 0.6); ctx.lineTo(x + 8, h.y); ctx.lineTo(x + 16, h.y + h.h * 0.6); ctx.fill();
         }
       } else {
-        ctx.fillStyle = '#6d6a73';
+        // rock cliff with snow on top ledges
+        ctx.fillStyle = '#6b7280';
         ctx.fillRect(h.x, h.y, h.w, h.h);
-        ctx.strokeStyle = '#4b4851';
+        ctx.strokeStyle = '#4b5260';
         ctx.lineWidth = 3;
         ctx.strokeRect(h.x, h.y, h.w, h.h);
+        ctx.fillStyle = '#ffffff';
+        if (h.y > 0) {
+          ctx.beginPath();
+          ctx.moveTo(h.x - 3, h.y + 2);
+          ctx.quadraticCurveTo(h.x + h.w / 2, h.y - 12, h.x + h.w + 3, h.y + 2);
+          ctx.lineTo(h.x + h.w + 3, h.y + 8);
+          ctx.lineTo(h.x - 3, h.y + 8);
+          ctx.fill();
+        }
+        ctx.fillStyle = 'rgba(190,225,255,0.8)';
+        if (h.y + h.h < H) {
+          for (let x = h.x + 6; x < h.x + h.w - 6; x += 14) {
+            ctx.beginPath(); ctx.moveTo(x, h.y + h.h); ctx.lineTo(x + 4, h.y + h.h + 12); ctx.lineTo(x + 8, h.y + h.h); ctx.fill();
+          }
+        }
       }
     }
-  }
-
-  function trackPath(ctx, built) {
-    ctx.beginPath();
-    for (const L of built.lines) L.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
   }
 
   function track(ctx, built, opts) {
-    // support posts
-    ctx.strokeStyle = 'rgba(95,66,40,0.55)';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    for (const s of built.segments) {
-      if (s.bx <= s.ax) continue;
-      const x0 = Math.ceil(s.ax / 45) * 45;
-      for (let x = x0; x <= s.bx; x += 45) {
-        const y = s.ay + ((x - s.ax) / (s.bx - s.ax)) * (s.by - s.ay);
-        if (s.tx > 0.2) { ctx.moveTo(x, y + 4); ctx.lineTo(x, H); }
-      }
-    }
-    ctx.stroke();
-
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-    // highlight selected / invalid pieces underneath
     const mark = (idx, color, w) => {
       ctx.strokeStyle = color;
       ctx.lineWidth = w;
@@ -755,29 +1112,20 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       for (const s of built.segments) if (s.p === idx) { ctx.moveTo(s.ax, s.ay); ctx.lineTo(s.bx, s.by); }
       ctx.stroke();
     };
-    if (opts.invalid) for (const i of opts.invalid) mark(i, 'rgba(255,50,50,0.85)', 16);
-    if (opts.selected != null && opts.editing) mark(opts.selected, 'rgba(255,204,51,0.9)', 16);
+    for (const L of built.lines) if (L.length > 1) snowSurface(ctx, L, true);
+    if (opts.invalid) for (const i of opts.invalid) mark(i, 'rgba(255,50,50,0.85)', 14);
+    if (opts.selected != null && opts.editing) mark(opts.selected, 'rgba(255,190,40,0.9)', 12);
 
-    trackPath(ctx, built);
-    ctx.strokeStyle = '#4a2f1b';
-    ctx.lineWidth = 9;
-    ctx.stroke();
-    trackPath(ctx, built);
-    ctx.strokeStyle = '#c99661';
-    ctx.lineWidth = 3;
-    ctx.stroke();
-
-    // start deck gate
+    // start hut + flag
     const D = MTB.Track.DECK;
-    ctx.fillStyle = '#4a2f1b';
-    ctx.fillRect(D.x1 - 4, D.y - 60, 6, 60);
-    ctx.fillStyle = '#ff5a36';
-    ctx.beginPath(); ctx.moveTo(D.x1 + 2, D.y - 60); ctx.lineTo(D.x1 + 34, D.y - 50); ctx.lineTo(D.x1 + 2, D.y - 40); ctx.fill();
+    ctx.fillStyle = '#7a4a2a';
+    ctx.fillRect(D.x1 - 4, D.y - 60, 5, 60);
+    ctx.fillStyle = '#ff4f6d';
+    ctx.beginPath(); ctx.moveTo(D.x1 + 1, D.y - 60); ctx.lineTo(D.x1 + 33, D.y - 50); ctx.lineTo(D.x1 + 1, D.y - 40); ctx.fill();
 
     if (opts.editing) {
-      // gap jump guides
       ctx.setLineDash([6, 8]);
-      ctx.strokeStyle = 'rgba(255,255,255,0.7)';
+      ctx.strokeStyle = 'rgba(40,80,130,0.65)';
       ctx.lineWidth = 2;
       ctx.beginPath();
       for (let k = 1; k < built.lines.length; k++) {
@@ -787,12 +1135,11 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       }
       ctx.stroke();
       ctx.setLineDash([]);
-      // end-of-track arrow
       const e = built.pen, r = (e.h * Math.PI) / 180;
       ctx.save();
       ctx.translate(e.x, e.y);
       ctx.rotate(r);
-      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      ctx.fillStyle = 'rgba(40,80,130,0.85)';
       ctx.beginPath(); ctx.moveTo(26, 0); ctx.lineTo(10, -8); ctx.lineTo(10, 8); ctx.fill();
       ctx.restore();
     }
@@ -803,15 +1150,15 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     ctx.translate(P.x, P.y);
     const pulse = 1 + Math.sin(t * 3) * 0.04 + (opts.flash || 0) * 0.5;
     const g = ctx.createRadialGradient(0, 0, P.r * 0.2, 0, 0, P.r * 1.9 * pulse);
-    g.addColorStop(0, 'rgba(255,255,255,0.9)');
-    g.addColorStop(0.35, 'rgba(178,120,255,0.55)');
-    g.addColorStop(1, 'rgba(120,80,255,0)');
+    g.addColorStop(0, 'rgba(255,255,255,0.95)');
+    g.addColorStop(0.35, 'rgba(120,200,255,0.55)');
+    g.addColorStop(1, 'rgba(90,120,255,0)');
     ctx.fillStyle = g;
     ctx.beginPath(); ctx.arc(0, 0, P.r * 1.9 * pulse, 0, Math.PI * 2); ctx.fill();
     for (let i = 0; i < 4; i++) {
       ctx.save();
       ctx.rotate(t * (1.2 + i * 0.45) * (i % 2 ? -1 : 1));
-      ctx.strokeStyle = `hsla(${280 - i * 35}, 95%, ${62 + i * 5}%, 0.95)`;
+      ctx.strokeStyle = `hsla(${200 + i * 25}, 95%, ${58 + i * 6}%, 0.95)`;
       ctx.lineWidth = 5 - i;
       const rr = P.r * (1 - i * 0.17) * pulse;
       ctx.beginPath(); ctx.arc(0, 0, rr, 0.3, Math.PI * 1.55); ctx.stroke();
@@ -820,104 +1167,148 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     ctx.fillStyle = '#fff';
     ctx.font = 'bold 20px system-ui, -apple-system, sans-serif';
     ctx.textAlign = 'center';
-    ctx.shadowColor = 'rgba(80,0,160,0.8)';
+    ctx.shadowColor = 'rgba(0,40,120,0.85)';
     ctx.shadowBlur = 8;
-    ctx.fillText(P.ground ? 'FINISH · ROLL IN' : 'FINISH', 0, -P.r - 14);
+    ctx.fillText(P.label || (P.ground ? 'FINISH · RIDE IN' : 'FINISH'), 0, -P.r - 14);
     if (opts.editing && opts.draggable) {
       ctx.shadowBlur = 0;
       ctx.font = '600 14px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.fillStyle = 'rgba(20,50,90,0.85)';
       ctx.fillText('drag to move', 0, P.r + 24);
     }
     ctx.restore();
   }
 
-  function line(ctx, a, b) { ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); }
-  function ik(a, b, l1, l2, flip) {
-    const dx = b[0] - a[0], dy = b[1] - a[1];
-    const d = Math.min(Math.hypot(dx, dy), (l1 + l2) * 0.999);
-    const base = Math.atan2(dy, dx);
-    const k = Math.acos(Math.max(-1, Math.min(1, (l1 * l1 + d * d - l2 * l2) / (2 * l1 * d))));
-    const ang = base + (flip ? k : -k);
-    return [a[0] + Math.cos(ang) * l1, a[1] + Math.sin(ang) * l1];
+  // ---------- the bear ----------
+  // Local coords (before the 1.5x scale): x = forward, y = down, snow surface at y = 9.
+  const FUR = '#8a5a34', FUR_DARK = '#5e3b20', MUZZLE = '#d9ad7c', SCARF = '#e8364f';
+
+  function board(ctx) {
+    ctx.fillStyle = '#1f6feb';
+    ctx.strokeStyle = '#0b2f66';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(-26, 3);
+    ctx.quadraticCurveTo(-25, 7.5, -20, 8.5);
+    ctx.lineTo(20, 8.5);
+    ctx.quadraticCurveTo(25, 7.5, 26, 3);
+    ctx.quadraticCurveTo(24, 5.5, 20, 6);
+    ctx.lineTo(-20, 6);
+    ctx.quadraticCurveTo(-24, 5.5, -26, 3);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#ffd23f';
+    ctx.fillRect(-6, 6.6, 12, 1.4);
+    ctx.fillStyle = '#222';
+    ctx.fillRect(-12, 4.2, 6, 2.2);
+    ctx.fillRect(6, 4.2, 6, 2.2);
   }
 
-  function bike(ctx, wheel) {
-    const RA = [-17, 0], FA = [17, 0], BB = [-3, 2], ST = [-8, -13], HT = [11, -14];
-    ctx.strokeStyle = '#1d1d22';
-    ctx.lineWidth = 2.2;
-    for (const c of [RA, FA]) {
-      ctx.beginPath(); ctx.arc(c[0], c[1], 9, 0, Math.PI * 2); ctx.stroke();
-      ctx.save(); ctx.lineWidth = 0.9; ctx.beginPath();
-      for (let i = 0; i < 3; i++) {
-        const a = wheel + (i * Math.PI) / 3;
-        ctx.moveTo(c[0] - Math.cos(a) * 8, c[1] - Math.sin(a) * 8); ctx.lineTo(c[0] + Math.cos(a) * 8, c[1] + Math.sin(a) * 8);
-      }
-      ctx.stroke(); ctx.restore();
-    }
-    ctx.strokeStyle = '#ff5a36';
-    ctx.lineWidth = 2.6;
-    ctx.beginPath();
-    line(ctx, RA, BB); line(ctx, BB, ST); line(ctx, ST, RA); line(ctx, ST, HT); line(ctx, BB, HT); line(ctx, HT, FA);
-    ctx.stroke();
-    ctx.strokeStyle = '#1d1d22';
-    ctx.beginPath();
-    line(ctx, HT, [9, -20]); line(ctx, [6, -20], [12, -20]); line(ctx, [-11, -14], [-5, -14]);
-    ctx.stroke();
-  }
-
-  function body(ctx, crank, air) {
-    const BB = [-3, 2];
-    const hip = air ? [-5, -22] : [-7, -18];
-    const sh = air ? [5, -36] : [4, -35];
-    const head = [sh[0] + 5, sh[1] - 8];
-    const hand = [8, -20];
-    const f1 = [BB[0] + Math.cos(crank) * 5.5, BB[1] + Math.sin(crank) * 5.5];
-    const f2 = [BB[0] - Math.cos(crank) * 5.5, BB[1] - Math.sin(crank) * 5.5];
+  function limb(ctx, pts, w, color) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = w;
     ctx.lineCap = 'round';
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = 'rgba(29,29,34,0.55)';
-    ctx.beginPath(); const k2 = ik(hip, f2, 13, 13, false); line(ctx, hip, k2); line(ctx, k2, f2); ctx.stroke();
-    ctx.strokeStyle = '#1d1d22';
+    ctx.lineJoin = 'round';
     ctx.beginPath();
-    const k1 = ik(hip, f1, 13, 13, false); line(ctx, hip, k1); line(ctx, k1, f1);
-    line(ctx, hip, sh);
-    const el = ik(sh, hand, 9, 9, true); line(ctx, sh, el); line(ctx, el, hand);
+    pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
     ctx.stroke();
-    ctx.fillStyle = '#fff';
-    ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(head[0], head[1], 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = '#2f80ed';
-    ctx.beginPath(); ctx.arc(head[0], head[1] - 0.5, 6.8, Math.PI * 1.05, Math.PI * 1.95); ctx.closePath(); ctx.fill();
-    ctx.strokeStyle = '#2f80ed';
-    ctx.beginPath(); line(ctx, [head[0] + 4, head[1] - 4], [head[0] + 10, head[1] - 3]); ctx.stroke();
   }
 
-  function ragdoll(ctx, o) {
+  function bear(ctx, t, air, speed) {
+    const crouch = air ? -2 : Math.min(2, speed / 300); // tuck lower at speed
+    const hipY = -11 + crouch;
+    // legs (back leg first)
+    limb(ctx, [[-9, 4], [-8, -3 + crouch * 0.6], [-3, hipY]], 5.2, FUR_DARK);
+    limb(ctx, [[9, 4], [7, -3 + crouch * 0.6], [3, hipY]], 5.2, FUR);
+    // body
+    ctx.save();
+    ctx.translate(0, -20 + crouch);
+    ctx.rotate(0.15);
+    ctx.fillStyle = FUR;
+    ctx.beginPath(); ctx.ellipse(0, 0, 9, 11.5, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = MUZZLE;
+    ctx.beginPath(); ctx.ellipse(2.5, 2, 5, 7, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+    const sh = [1.5, -27 + crouch];
+    // back arm
+    const back = air ? [[sh[0] - 2, sh[1]], [-9, sh[1] - 8], [-15, sh[1] - 12]] : [[sh[0] - 2, sh[1]], [-9, sh[1] + 1], [-15, sh[1] - 2]];
+    limb(ctx, back, 4.4, FUR_DARK);
+    // scarf with flapping tail
+    const flap = Math.sin(t * 18) * 2.5;
+    ctx.fillStyle = SCARF;
+    ctx.beginPath(); ctx.ellipse(2.5, sh[1] - 1, 7.5, 3, 0.1, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(-3, sh[1] - 2);
+    ctx.quadraticCurveTo(-10, sh[1] - 3 + flap, -17, sh[1] - 1 - flap);
+    ctx.lineTo(-16, sh[1] + 3 - flap);
+    ctx.quadraticCurveTo(-9, sh[1] + 2 + flap, -2, sh[1] + 1);
+    ctx.closePath();
+    ctx.fill();
+    // head
+    const hx = 4.5, hy = sh[1] - 9;
+    ctx.fillStyle = FUR;
+    ctx.beginPath(); ctx.arc(hx - 5, hy - 6.5, 3.2, 0, Math.PI * 2); ctx.arc(hx + 4.5, hy - 7, 3.2, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#e7a6a0';
+    ctx.beginPath(); ctx.arc(hx - 5, hy - 6.5, 1.5, 0, Math.PI * 2); ctx.arc(hx + 4.5, hy - 7, 1.5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = FUR;
+    ctx.beginPath(); ctx.arc(hx, hy, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = MUZZLE;
+    ctx.beginPath(); ctx.ellipse(hx + 6, hy + 2, 4.6, 3.4, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#2a1a10';
+    ctx.beginPath(); ctx.ellipse(hx + 9.6, hy + 0.6, 1.8, 1.4, 0, 0, Math.PI * 2); ctx.fill();
+    // goggles
+    ctx.fillStyle = '#ff9f1c';
+    ctx.beginPath(); ctx.ellipse(hx + 3.5, hy - 2.6, 4, 2.6, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#2a1a10';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(hx - 7.5, hy - 3); ctx.lineTo(hx, hy - 2.8); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.beginPath(); ctx.ellipse(hx + 4.6, hy - 3.4, 1.3, 0.8, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#2a1a10';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(hx + 7, hy + 3.2, 1.6, 0.2, Math.PI - 0.4); ctx.stroke();
+    // front arm (on top)
+    const front = air ? [[sh[0] + 1, sh[1]], [9, sh[1] - 7], [15, sh[1] - 13]] : [[sh[0] + 1, sh[1]], [9, sh[1] + 2], [15, sh[1] + 1]];
+    limb(ctx, front, 4.4, FUR);
+    ctx.fillStyle = FUR_DARK;
+    for (const p of [back[2], front[2]]) { ctx.beginPath(); ctx.arc(p[0], p[1], 2.4, 0, Math.PI * 2); ctx.fill(); }
+  }
+
+  function tumblingBear(ctx, o, t) {
     ctx.save();
     ctx.translate(o.x, o.y);
     ctx.rotate(o.rot);
-    ctx.scale(1.5, 1.5);
-    ctx.strokeStyle = '#1d1d22';
-    ctx.lineWidth = 3;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    line(ctx, [0, 10], [0, -8]);
-    line(ctx, [0, 10], [-8, 22]); line(ctx, [0, 10], [9, 20]);
-    line(ctx, [0, -6], [-10, 2]); line(ctx, [0, -6], [10, -12]);
-    ctx.stroke();
-    ctx.fillStyle = '#fff';
-    ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(0, -15, 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = '#2f80ed';
-    ctx.beginPath(); ctx.arc(0, -15.5, 6.8, Math.PI * 1.05, Math.PI * 1.95); ctx.closePath(); ctx.fill();
+    ctx.scale(1.8, 1.8);
+    limb(ctx, [[0, 6], [-8, 15]], 5, FUR_DARK);
+    limb(ctx, [[0, 6], [8, 14]], 5, FUR);
+    limb(ctx, [[0, -6], [-11, -2]], 4.4, FUR_DARK);
+    limb(ctx, [[0, -6], [11, -10]], 4.4, FUR);
+    ctx.fillStyle = FUR;
+    ctx.beginPath(); ctx.ellipse(0, 0, 8.5, 10.5, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = SCARF;
+    ctx.fillRect(-7, -9, 14, 4);
+    ctx.fillStyle = FUR;
+    ctx.beginPath(); ctx.arc(-5, -22, 3, 0, Math.PI * 2); ctx.arc(5, -22, 3, 0, Math.PI * 2); ctx.arc(0, -16, 7.5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = MUZZLE;
+    ctx.beginPath(); ctx.ellipse(0, -13, 4, 3, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#2a1a10';
+    ctx.lineWidth = 1.2;
+    // dizzy X eyes
+    for (const ex of [-3, 3]) { ctx.beginPath(); ctx.moveTo(ex - 1.3, -19.3); ctx.lineTo(ex + 1.3, -16.7); ctx.moveTo(ex + 1.3, -19.3); ctx.lineTo(ex - 1.3, -16.7); ctx.stroke(); }
     ctx.restore();
+    // little dizzy stars
+    ctx.fillStyle = '#ffd23f';
+    for (let i = 0; i < 3; i++) {
+      const a = t * 4 + (i * Math.PI * 2) / 3;
+      ctx.beginPath(); ctx.arc(o.x + Math.cos(a) * 22, o.y - 42 + Math.sin(a) * 6, 2.8, 0, Math.PI * 2); ctx.fill();
+    }
   }
 
   function rider(ctx, r, opts) {
     if (r.state === 'crashed' && r.bike) {
-      ctx.save(); ctx.translate(r.bike.x, r.bike.y); ctx.rotate(r.bike.rot); ctx.scale(1.5, 1.5); bike(ctx, r.wheel); ctx.restore();
-      ragdoll(ctx, r.body);
+      ctx.save(); ctx.translate(r.bike.x, r.bike.y); ctx.rotate(r.bike.rot); ctx.scale(1.8, 1.8); board(ctx); ctx.restore();
+      tumblingBear(ctx, r.body, opts.t);
       return;
     }
     ctx.save();
@@ -928,19 +1319,26 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     }
     ctx.translate(x, y);
     ctx.rotate(r.ang);
-    // draw 1.5x larger than the physics circle, keeping tyres on the ground
-    ctx.translate(0, -4.5 * s);
-    ctx.scale(1.5 * s, 1.5 * s);
-    bike(ctx, r.wheel);
-    body(ctx, r.crank, !r.grounded);
+    // draw 1.8x the physics circle, keeping the board base on the snow (local y = 9)
+    ctx.translate(0, -7.2 * s);
+    ctx.scale(1.8 * s, 1.8 * s);
+    board(ctx);
+    bear(ctx, opts.t, !r.grounded, Math.hypot(r.vx || 0, r.vy || 0));
     ctx.restore();
+  }
+
+  function spray(ctx, parts) {
+    for (const p of parts) {
+      ctx.fillStyle = `rgba(255,255,255,${Math.max(0, p.life / p.max) * 0.9})`;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+    }
   }
 
   function trail(ctx, pts) {
     if (!pts || pts.length < 2) return;
     ctx.save();
     ctx.setLineDash([3, 7]);
-    ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+    ctx.strokeStyle = 'rgba(30,70,130,0.75)';
     ctx.lineWidth = 2.5;
     ctx.beginPath();
     pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
@@ -961,7 +1359,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   function hud(ctx, r) {
     const kmh = Math.round(Math.hypot(r.vx, r.vy) * 0.16);
     ctx.save();
-    ctx.fillStyle = 'rgba(15,20,30,0.55)';
+    ctx.fillStyle = 'rgba(15,30,55,0.55)';
     ctx.beginPath();
     ctx.roundRect ? ctx.roundRect(W - 230, 18, 210, 62, 12) : ctx.rect(W - 230, 18, 210, 62);
     ctx.fill();
@@ -983,17 +1381,19 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       scenery(ctx, S.t);
       if (S.mode === 'edit') grid(ctx);
       zones(ctx, level);
-      ground(ctx, level);
       track(ctx, S.built, { selected: S.sel, invalid: S.invalid, editing: S.mode === 'edit' });
+      ground(ctx, level);
       portal(ctx, level.portal, S.t, { editing: S.mode === 'edit', draggable: !!level.draggable, flash: S.rider && S.rider.state === 'finished' ? Math.max(0, 1 - S.endT) : 0 });
       if (S.mode === 'edit') {
         trail(ctx, S.lastTrail);
         if (S.lastEnd && S.lastEnd.state === 'crashed') crashMark(ctx, S.lastEnd);
-        rider(ctx, MTB.Physics.createRider(), {});
+        rider(ctx, MTB.Physics.createRider(), { t: S.t });
       } else if (S.rider) {
-        rider(ctx, S.rider, { portal: level.portal, endT: S.endT });
+        spray(ctx, S.spray || []);
+        rider(ctx, S.rider, { portal: level.portal, endT: S.endT, t: S.t });
         hud(ctx, S.rider);
       }
+      snowfall(ctx, S.t);
     },
   };
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -1002,11 +1402,11 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   <script>
 // App wiring: editor UI, input, game loop, save/load.
 (function () {
-  const { LEVELS, WORLD, Track, Physics, Render } = window.MTB;
+  const { LEVELS, WORLD, Track, Physics, Render, Store } = window.MTB;
   const $ = (s) => document.querySelector(s);
   const clone = (o) => JSON.parse(JSON.stringify(o));
-  const SAVE_KEY = 'mtb-portal-v2';
-  const OLD_KEY = 'mtb-portal-sandbox-v1';
+  const SAVE_KEY = 'snowbear-v1';
+  const OLD_KEY = 'snowbear-none';
 
   const canvas = $('#game');
   const ctx = canvas.getContext('2d');
@@ -1021,7 +1421,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   const view = { scale: 1, ox: 0, oy: 0, dpr: 1 };
 
   // ---------- save / load ----------
-  let save = { level: 0, unlocked: 1, tracks: {}, best: {}, portals: {} };
+  let save = { level: 0, unlocked: 1, tracks: {}, best: {}, portals: {}, seenTools: ['ramp'] };
   function load() {
     try {
       const d = JSON.parse(localStorage.getItem(SAVE_KEY));
@@ -1041,7 +1441,15 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     } catch (e) { /* ignore */ }
   }
   const isFree = (i) => !!(LEVELS[i] && LEVELS[i].draggable);
-  const unlocked = (i) => i >= 0 && i < LEVELS.length && (isFree(i) || i < save.unlocked);
+  const progressOK = (i) => i >= 0 && i < LEVELS.length && (isFree(i) || i < save.unlocked);
+  const needsPro = (i) => !!(LEVELS[i] && LEVELS[i].premium && !Store.isPro());
+  const unlocked = (i) => progressOK(i) && !needsPro(i);
+  function goTo(i) {
+    if (i < 0 || i >= LEVELS.length) return;
+    if (needsPro(i)) return showPaywall(i);
+    if (!progressOK(i)) return toast('Reach the portal to unlock the next level.');
+    loadLevel(i);
+  }
   function starsFor(L, n) { return !L.par ? 0 : n <= L.par ? 3 : n <= L.par + 2 ? 2 : 1; }
   const starStr = (k) => '★'.repeat(k) + '☆'.repeat(3 - k);
 
@@ -1055,10 +1463,18 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     S.sel = Math.max(0, S.pieces.length - 1);
     S.lastTrail = null;
     S.lastEnd = null;
+    history = [];
+    document.querySelectorAll('[data-add]').forEach((b) => b.classList.toggle('hidden', !allowed(b.dataset.add)));
+    const fresh = Object.keys(Track.TYPES).filter((k) => allowed(k) && !save.seenTools.includes(k));
+    if (fresh.length) {
+      save.seenTools.push(...fresh);
+      setTimeout(() => toast(`🎉 New piece unlocked: ${fresh.map((k) => Track.TYPES[k].label).join(' + ')}!`), 300);
+    }
     rebuild();
     renderStrip();
     renderProps();
     renderLevelBar();
+    updateUndo();
   }
 
   function renderLevelBar() {
@@ -1069,24 +1485,40 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     $('#prevLvl').disabled = S.li === 0;
     $('#nextLvl').disabled = S.li === LEVELS.length - 1;
     $('#nextLvl').classList.toggle('locked', !unlocked(S.li + 1));
+    $('#proBtn').classList.toggle('hidden', Store.isPro());
     const menu = $('#lvlMenu');
     menu.innerHTML = '';
     LEVELS.forEach((lv, i) => {
+      if (lv.premium && !(LEVELS[i - 1] && LEVELS[i - 1].premium)) {
+        const h = document.createElement('div');
+        h.className = 'lvsep';
+        h.innerHTML = Store.isPro() ? '👑 Pro Runs' : `👑 Pro Runs <span>${Store.CONFIG.priceLabel}</span>`;
+        menu.appendChild(h);
+      }
+      if (lv.draggable) { const h = document.createElement('div'); h.className = 'lvsep'; h.textContent = 'Sandbox'; menu.appendChild(h); }
       const bb = save.best[lv.id];
       const btn = document.createElement('button');
-      btn.className = 'lvitem' + (i === S.li ? ' cur' : '');
-      btn.disabled = !unlocked(i);
-      btn.innerHTML = `<span class="lvnum">${isFree(i) ? '∞' : i + 1}</span><span class="lvn">${lv.name}</span>` +
-        (lv.par ? `<span class="stars">${unlocked(i) ? starStr(bb ? bb.stars : 0) : '🔒'}</span>` : '');
-      btn.onclick = () => { menu.classList.add('hidden'); loadLevel(i); };
+      const pro = needsPro(i);
+      btn.className = 'lvitem' + (i === S.li ? ' cur' : '') + (lv.premium ? ' prem' : '');
+      btn.disabled = !pro && !progressOK(i);
+      const badge = pro ? '<span class="probadge">PRO</span>' : lv.par ? `<span class="stars">${progressOK(i) ? starStr(bb ? bb.stars : 0) : '🔒'}</span>` : '';
+      btn.innerHTML = `<span class="lvnum">${isFree(i) ? '∞' : i + 1}</span><span class="lvn">${lv.name}</span>${badge}`;
+      btn.onclick = () => { menu.classList.add('hidden'); goTo(i); };
       menu.appendChild(btn);
     });
+    const ft = document.createElement('div');
+    ft.className = 'lvfoot';
+    ft.textContent = `${MTB.GAME} v${MTB.VERSION}`;
+    menu.appendChild(ft);
   }
 
+  const allowed = (type) => !S.level.tools || S.level.tools.includes(type);
   function rebuild() {
     S.built = Track.build(S.pieces);
     S.invalid = Track.validate(S.built, S.level);
+    S.pieces.forEach((pc, i) => { if (!allowed(pc.type)) S.invalid.add(i); });
     persist();
+    if (typeof updateUndo === 'function' && $('#undoBtn')) updateUndo();
     const n = S.pieces.length;
     $('#pieceCount').textContent = `${n} piece${n === 1 ? '' : 's'}` + (S.level.par ? ` · par ${S.level.par}` : '');
     document.querySelectorAll('.chip').forEach((el) => {
@@ -1097,10 +1529,32 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
 
   // Track-piece icons (inline SVG so they inherit the button colour)
   const ICONS = {
-    ramp: '<svg viewBox="0 0 40 28" class="pico"><path d="M3 6 L37 22" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M11 10 V27 M19 14 V27 M27 18 V27" stroke="currentColor" stroke-width="1.6" opacity=".55"/><path d="M3 6 L37 22" stroke="#c99661" stroke-width="1.4" stroke-linecap="round"/></svg>',
-    curve: '<svg viewBox="0 0 40 28" class="pico"><path d="M3 5 Q8 24 22 24 Q32 24 37 12" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M12 19 V27 M22 24 V27 M31 20 V27" stroke="currentColor" stroke-width="1.6" opacity=".55"/><path d="M3 5 Q8 24 22 24 Q32 24 37 12" stroke="#c99661" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>',
-    gap: '<svg viewBox="0 0 40 28" class="pico"><path d="M2 16 Q8 16 12 11" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M28 13 L38 22" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M13 9 Q20 0 27 11" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2.5 3" fill="none"/><path d="M7 15 V27 M33 18 V27" stroke="currentColor" stroke-width="1.6" opacity=".55"/></svg>',
+    ramp: '<svg viewBox="0 0 40 28" class="pico"><path d="M3 5 L37 21 L37 27 L3 27 Z" fill="#eef5fb"/><path d="M3 5 L37 21" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>',
+    curve: '<svg viewBox="0 0 40 28" class="pico"><path d="M3 4 Q8 23 22 23 Q32 23 37 11 L37 27 L3 27 Z" fill="#eef5fb"/><path d="M3 4 Q8 23 22 23 Q32 23 37 11" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/></svg>',
+    gap: '<svg viewBox="0 0 40 28" class="pico"><path d="M1 15 Q8 15 12 10 L12 27 L1 27 Z M28 12 L39 21 L39 27 L28 27 Z" fill="#eef5fb"/><path d="M1 15 Q8 15 12 10 M28 12 L39 21" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M13 8 Q20 -1 27 10" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2.5 3" fill="none"/></svg>',
   };
+
+  // ---------- undo ----------
+  let history = [];
+  const snap = () => JSON.stringify({ pieces: S.pieces, sel: S.sel, portal: S.level.draggable ? { x: S.level.portal.x, y: S.level.portal.y } : null });
+  function checkpoint() {
+    const s = snap();
+    if (history[history.length - 1] !== s) history.push(s);
+    if (history.length > 100) history.shift();
+    updateUndo();
+  }
+  function undo() {
+    if (S.mode !== 'edit') toEdit();
+    let cur = snap(), prev;
+    while (history.length && (prev = history.pop()) === cur);
+    if (!prev || prev === cur) return updateUndo();
+    const d = JSON.parse(prev);
+    S.pieces = d.pieces;
+    S.sel = Math.min(d.sel, S.pieces.length - 1);
+    if (d.portal) Object.assign(S.level.portal, d.portal);
+    rebuild(); renderStrip(); renderProps(); updateUndo();
+  }
+  function updateUndo() { $('#undoBtn').disabled = !history.length || (history.length === 1 && history[0] === snap()); }
 
   // ---------- editor UI ----------
   function chipLabel(pc, i) {
@@ -1153,13 +1607,27 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     box.appendChild(head);
     head.querySelectorAll('button').forEach((b) => (b.onclick = () => act(b.dataset.act)));
 
+    const body = document.createElement('div');
+    body.className = 'prop-body' + (T.params.some((p) => p.vertical) ? ' has-v' : '');
+    const side = document.createElement('div');
+    side.className = 'prop-side';
+    box.appendChild(body);
     for (const p of T.params) {
       const row = document.createElement('div');
-      row.className = 'prop';
-      row.innerHTML = `<label>${p.label}<span class="val"></span></label>
+      const range = `<input type="range" min="${p.min}" max="${p.max}" step="${p.step}" value="${pc[p.k]}" aria-label="${p.label}">`;
+      if (p.vertical) {
+        row.className = 'prop vprop';
+        row.innerHTML = `<label>${p.label}</label><span class="val"></span>
+          <button class="step" data-d="1">+</button>
+          <div class="vwrap">${range}</div>
+          <button class="step" data-d="-1">−</button>`;
+      } else {
+        row.className = 'prop';
+        row.innerHTML = `<label>${p.label}<span class="val"></span></label>
         <div class="ctl"><button class="step" data-d="-1">−</button>
-        <input type="range" min="${p.min}" max="${p.max}" step="${p.step}" value="${pc[p.k]}">
+        ${range}
         <button class="step" data-d="1">+</button></div>`;
+      }
       const input = row.querySelector('input');
       const val = row.querySelector('.val');
       const set = (v) => {
@@ -1173,14 +1641,20 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
       };
       val.textContent = fmt(pc, p.k, pc[p.k]);
       input.oninput = () => set(+input.value);
-      row.querySelectorAll('.step').forEach((b) => holdRepeat(b, () => set(pc[p.k] + +b.dataset.d * p.step)));
-      box.appendChild(row);
+      input.addEventListener('pointerdown', checkpoint);
+      input.addEventListener('keydown', checkpoint);
+      row.querySelectorAll('.step').forEach((b) => {
+        b.addEventListener('pointerdown', checkpoint);
+        holdRepeat(b, () => set(pc[p.k] + +b.dataset.d * p.step));
+      });
+      (p.vertical ? body : side).appendChild(row);
     }
+    body.appendChild(side);
     if (pc.type === 'gap') {
       const tip = document.createElement('div');
       tip.className = 'tip';
       tip.textContent = 'A gap leaves open air. The next piece starts at the landing point.';
-      box.appendChild(tip);
+      side.appendChild(tip);
     }
   }
 
@@ -1202,6 +1676,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   }
 
   function act(a) {
+    checkpoint();
     const i = S.sel, P = S.pieces;
     if (a === 'del') P.splice(i, 1), (S.sel = Math.min(i, P.length - 1));
     if (a === 'dup') P.splice(i + 1, 0, clone(P[i])), (S.sel = i + 1);
@@ -1213,6 +1688,8 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   }
 
   function addPiece(type) {
+    if (!allowed(type)) return toast(`${Track.TYPES[type].label} isn't available on this level yet.`);
+    checkpoint();
     const pc = Track.TYPES[type].make();
     const at = S.pieces.length ? S.sel + 1 : 0;
     S.pieces.splice(at, 0, pc);
@@ -1225,12 +1702,13 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   // ---------- ride ----------
   function ride() {
     hideOverlay();
-    if (S.invalid.size) return toast('Red pieces hit a no-build zone or leave the map. Fix them first.');
+    if (S.invalid.size) return toast('Red pieces are blocked here (no-build zone, off the map, or not unlocked yet).');
     S.mode = 'ride';
     S.rider = Physics.createRider();
     S.segs = S.built.segments.concat(Track.groundSegments(S.level));
     S.endT = 0;
     S.ended = false;
+    S.spray = [];
     acc = 0;
     document.body.classList.add('riding');
     $('#rideBtn').innerHTML = '■ Stop';
@@ -1279,7 +1757,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     $('#overlay').classList.toggle('win', win);
     const hasNext = win && S.li < LEVELS.length - 1;
     $('#ovNext').classList.toggle('hidden', !hasNext);
-    if (hasNext) $('#ovNext').textContent = isFree(S.li + 1) ? 'Free Ride →' : 'Next level →';
+    if (hasNext) $('#ovNext').textContent = needsPro(S.li + 1) ? '👑 Unlock Pro Runs' : isFree(S.li + 1) ? 'Free Ride →' : 'Next level →';
     $('#ovRetry').className = hasNext ? 'ghost' : 'primary';
     $('#overlay').classList.remove('hidden');
   }
@@ -1294,6 +1772,37 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     toastT = setTimeout(() => el.classList.remove('show'), 2600);
   }
 
+  // ---------- paywall ----------
+  let pwTarget = null;
+  function showPaywall(target) {
+    pwTarget = target == null ? LEVELS.findIndex((l) => l.premium) : target;
+    const list = $('#pwLevels');
+    list.innerHTML = '';
+    LEVELS.forEach((lv, i) => {
+      if (!lv.premium) return;
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="lvnum">${i + 1}</span>${lv.name}<small>${lv.hint}</small>`;
+      list.appendChild(li);
+    });
+    $('#pwPrice').textContent = Store.CONFIG.priceLabel;
+    const ch = Store.channel();
+    $('#pwBuy').textContent = ch === 'none' ? 'Coming soon' : `Subscribe · ${Store.CONFIG.priceLabel}`;
+    $('#pwBuy').disabled = ch === 'none';
+    const C = Store.CONFIG;
+    const links = [C.termsUrl && `<a href="${C.termsUrl}" target="_blank" rel="noopener">Terms</a>`, C.privacyUrl && `<a href="${C.privacyUrl}" target="_blank" rel="noopener">Privacy</a>`].filter(Boolean).join(' · ');
+    $('#pwFine').innerHTML = (ch === 'test' ? '<b>TEST MODE</b>: no charge, unlocks instantly. ' : '') +
+      `Renews every year until cancelled. Cancel anytime${ch === 'ios' ? ' in your Apple ID settings' : ''}.` + (links ? `<br>${links}` : '');
+    $('#paywall').classList.remove('hidden');
+  }
+  function hidePaywall() { $('#paywall').classList.add('hidden'); }
+  function afterPro() {
+    renderLevelBar();
+    toast('👑 Pro Runs unlocked. Have fun!');
+    if (pwTarget != null && progressOK(pwTarget)) loadLevel(pwTarget);
+    else if (pwTarget != null) toast('Pro unlocked! Finish level 5 to open the Pro Runs.');
+  }
+  Store.onChange(() => renderLevelBar());
+
   // ---------- canvas input ----------
   function toWorld(e) {
     const rect = canvas.getBoundingClientRect();
@@ -1305,6 +1814,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     const p = toWorld(e);
     const P = S.level.portal;
     if (S.level.draggable && Math.hypot(p.x - P.x, p.y - P.y) < P.r * 1.3) {
+      checkpoint();
       drag = { dx: P.x - p.x, dy: P.y - p.y };
       canvas.setPointerCapture(e.pointerId);
       canvas.classList.add('dragging');
@@ -1334,13 +1844,31 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   $('#rideBtn').onclick = () => (S.mode === 'edit' ? ride() : toEdit());
   $('#ovRetry').onclick = ride;
   $('#ovEdit').onclick = toEdit;
-  $('#ovNext').onclick = () => loadLevel(S.li + 1);
+  $('#undoBtn').onclick = undo;
+  $('#ovNext').onclick = () => goTo(S.li + 1);
   $('#prevLvl').onclick = () => loadLevel(S.li - 1);
-  $('#nextLvl').onclick = () => (unlocked(S.li + 1) ? loadLevel(S.li + 1) : toast('Reach the portal to unlock the next level.'));
+  $('#nextLvl').onclick = () => goTo(S.li + 1);
+  $('#proBtn').onclick = () => showPaywall();
+  $('#pwClose').onclick = hidePaywall;
+  $('#paywall').addEventListener('click', (e) => { if (e.target.id === 'paywall') hidePaywall(); });
+  $('#pwBuy').onclick = async () => {
+    const b = $('#pwBuy');
+    b.disabled = true;
+    const res = await Store.purchase();
+    b.disabled = false;
+    if (res.message) toast(res.message);
+    if (res.ok) { hidePaywall(); afterPro(); }
+  };
+  $('#pwRestore').onclick = async () => {
+    const res = await Store.restore();
+    if (res.message) toast(res.message);
+    if (res.ok) { hidePaywall(); afterPro(); }
+  };
   $('#lvlName').onclick = (e) => { e.stopPropagation(); $('#lvlMenu').classList.toggle('hidden'); };
   document.addEventListener('click', (e) => { if (!e.target.closest('#lvlMenu')) $('#lvlMenu').classList.add('hidden'); });
   $('#clearBtn').onclick = () => {
     if (!confirmClear()) return;
+    checkpoint();
     S.pieces = clone(S.level.start);
     S.sel = 0;
     S.lastTrail = null;
@@ -1359,10 +1887,12 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     b.onclick = () => addPiece(b.dataset.add);
   });
   window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); return undo(); }
     if (e.target.tagName === 'INPUT' && e.key !== ' ' && e.key !== 'Enter') return;
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
-      if (!$('#overlay').classList.contains('hidden')) ($('#ovNext').classList.contains('hidden') ? ride() : loadLevel(S.li + 1));
+      if (!$('#paywall').classList.contains('hidden')) return;
+      if (!$('#overlay').classList.contains('hidden')) ($('#ovNext').classList.contains('hidden') ? ride() : goTo(S.li + 1));
       else S.mode === 'edit' ? ride() : toEdit();
     } else if (e.key === 'Escape') toEdit();
     else if (S.mode === 'edit' && (e.key === 'Delete' || e.key === 'Backspace') && S.pieces.length) act('del');
@@ -1382,6 +1912,24 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   }
   new ResizeObserver(resize).observe(stage);
 
+  S.spray = [];
+  function updateSpray(dt) {
+    const r = S.rider;
+    const sp = Math.hypot(r.vx, r.vy);
+    if (r.state === 'riding' && r.grounded && sp > 60) {
+      const c = Math.cos(r.ang), s = Math.sin(r.ang);
+      const n = Math.min(4, Math.round(sp / 160));
+      for (let i = 0; i < n; i++) {
+        const tx = r.x - c * 38, ty = r.y - s * 38 + c * 7; // tail of the board
+        S.spray.push({ x: tx, y: ty, vx: -c * sp * 0.25 + (Math.random() - 0.5) * 60, vy: -s * sp * 0.25 - 60 - Math.random() * 90,
+          r: 1.5 + Math.random() * 2.5, life: 0.5 + Math.random() * 0.3, max: 0.8 });
+      }
+    }
+    for (const p of S.spray) { p.vy += 500 * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.life -= dt; }
+    S.spray = S.spray.filter((p) => p.life > 0);
+    if (S.spray.length > 300) S.spray.splice(0, S.spray.length - 300);
+  }
+
   let last = performance.now(), acc = 0;
   function frame(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
@@ -1390,6 +1938,7 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     if (S.mode === 'ride' && S.rider) {
       acc += dt;
       while (acc >= Physics.SUB) { Physics.step(S.rider, S.segs, S.level); acc -= Physics.SUB; }
+      updateSpray(dt);
       if (S.rider.state !== 'riding') {
         S.endT += dt;
         if (!S.ended) { S.ended = true; onEnd(); }
@@ -1407,13 +1956,15 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
     requestAnimationFrame(frame);
   }
 
+  $('#ver').textContent = 'v' + MTB.VERSION;
   load();
   resize();
+  Store.init();
   loadLevel(unlocked(save.level) ? save.level : 0);
   requestAnimationFrame(frame);
 
   // exposed for debugging / tests
-  window.MTB.app = { S, ride, toEdit, addPiece, select, loadLevel, save: () => save };
+  window.MTB.app = { S, ride, toEdit, addPiece, select, loadLevel, goTo, showPaywall, save: () => save };
 })();
 
 </script>
